@@ -1,0 +1,123 @@
+﻿@using EntityLayer.Concrete
+@model List<Driver>
+
+@{
+    int count = Convert.ToInt32(TempData["NumberOfClients"]) + Convert.ToInt32(TempData["NumberOfDrivers"]);
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="cards">
+    <div class="card-single">
+        <div>
+            <h1>@TempData["NumberOfClients"]</h1>
+            <span>Customers</span>
+        </div>
+        <div>
+            <span class="las la-users"></span>
+        </div>
+    </div>
+
+    <div class="card-single">
+        <div>
+            <h1>@TempData["NumberOfDrivers"]</h1>
+            <span>Drivers</span>
+        </div>
+        <div>
+            <span class="las la-clipboard-list"></span>
+        </div>
+    </div>
+
+    <div class="card-single">
+        <div>
+            <h1>124</h1>
+            <span>Orders</span>
+        </div>
+        <div>
+            <span class="las la-shopping-bag"></span>
+        </div>
+    </div>
+
+    <div class="card-single">
+        <div>
+            <h1>@count</h1>
+            <span>Total User</span>
+        </div>
+        <div>
+            <span class="lab la-google-wallet"></span>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:3rem">
+
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>Recent Projects</h3>
+
+                <button class="buttons">See All <span class="las la-arrow-right"></span></button>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <td width="19%">Driver</td>
+                                <td width="14%">Number</td>
+                                <td width="14%">Mail</td>
+                                <td width="11%">Status</td>
+                                <td width="13%">Accept</td>
+                                <td width="13%">Decline</td>
+                                <td width="16%">Details</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.DriverName
+                                        @if (item.DriverSurName.Length > 10)
+                                        {
+                                            @item.DriverSurName.Substring(0, 15)<span>...</span>
+                                        }
+                                        else
+                                        {
+                                            @item.DriverSurName
+                                        }
+                                    </td>
+                                    <td>@item.DriverNumber</td>
+                                    <td>
+                                        @if (item.DriverMail.Length > 15)
+                                        {
+                                            @item.DriverMail.Substring(0, 14)<span>...</span>
+                                        }
+                                        else
+                                        {
+                                            @item.DriverMail
+                                        }
+                                    </td>
+                                    <td>
+                                        <span class="status red"></span>Disable
+                                    </td>
+                                    <td>
+                                        <a class="btns scs" href="/AdmDriver/AcceptDriver/@item.DriverID"><i class="las la-check"></i> Accept</a>
+                                    </td>
+                                    <td>
+                                        <a class="btns dng" href="#"><i class="las la-cross"></i> Decline</a>
+                                    </td>
+                                    <td>
+                                        <a class="btns def" href="/AdmDashboard/GetDriverDetails/@item.DriverID"><i class="las la-eye"></i> View</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

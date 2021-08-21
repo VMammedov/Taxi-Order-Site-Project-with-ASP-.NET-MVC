@@ -1,0 +1,45 @@
+﻿@model EntityLayer.Concrete.Client
+
+@{
+    ViewBag.Title = "GetClientDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Client Details</h2>
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div class="div-img">
+                <img src="@Model.ClientImage" alt="Driver Image" />
+            </div>
+            <hr />
+            <div class="detail">
+                <div><i class="fas fa-user"></i> Name : @Html.DisplayFor(x => x.ClientName)</div>
+                <div>SurName : @Html.DisplayFor(x => x.ClientSurName)</div>
+                <div><i class="fas fa-mail-bulk"></i> Email : @Html.DisplayFor(x => x.ClientMail)</div>
+                <div><i class="fas fa-phone"></i> Phone Number : @Html.DisplayFor(x => x.ClientNumber)</div>
+                <div><i class="fas fa-hammer"></i> Profession : @Html.DisplayFor(x => x.ClientProfession)</div>
+                <div>
+                    <i class="fas fa-venus-mars"></i> Gender : @Html.DisplayFor(x => x.Sex)
+                    @if (Model.Sex == "Male")
+                    {
+                        <i class="fas fa-male"></i>
+                    }
+                    else
+                    { <i class="fas fa-female"></i>}
+                </div>
+                <div>
+                    <i class="fas fa-info-circle"></i> Status :
+                    @if (Model.ClientStatus)
+                    {
+                        <span class="status green"></span><span>Active</span>
+                    }
+                    else
+                    { <span class="status red"></span><span>Passive</span>}
+                </div>
+                <div><i class="fas fa-address-card"></i> About : @Html.DisplayFor(x => x.ClientAbout)</div>
+            </div>
+        </div>
+    </div>
+</div>
+

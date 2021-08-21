@@ -1,0 +1,35 @@
+﻿@model EntityLayer.Concrete.Contact
+
+<section class="contact_section layout_padding-bottom">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                Any Problems <br>
+                Any Questions
+            </h2>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5  offset-md-1">
+                <div class="contact_form">
+                    <h4>
+                        Get In touch
+                    </h4>
+                    <form action="/Contact/ContactUsForm" method="post">
+                        <input type="text" name="UserName" placeholder="Name">
+                        <input type="email" name="UserMail" placeholder="Email">
+                        <input type="text" name="Subject" placeholder="Subject">
+                        <input type="text" name="Message" placeholder="Message" class="message_input">
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 px-0">
+                <div class="img-box">
+                    <img src="~/Templates/urotaxi-html/images/contact-img.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,80 @@
+﻿@model EntityLayer.Dto.AdminLoginDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register UROTAXI</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Templates/Login&Register/css/style.css">
+
+    <style>
+        .form-control1:focus {
+            outline-color: gold !important;
+            box-shadow: gold 2px 2px !important;
+            border-color: gold !important;
+        }
+
+        .form-control1 {
+            border-color: gold !important;
+            padding: 20px !important;
+            margin-bottom: 20px !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="main" style="padding:50px 0; text-align:center">
+            <div class="booking-content">
+                <div class="booking-form" style="margin:auto; border-radius:1rem">
+                    <form id="booking-form" action="/Register/AdminRegister" method="post">
+                        <h2><span style="padding: 0px 10px" class="fas fa-house-user"></span>Admin Register</h2>
+                        <div class="form-group form-input">
+                            <input type="text" name="AdminUserName" id="name" required />
+                            <label for="name" class="form-label">Admin UserName</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="email" name="AdminMail" id="email" required />
+                            <label for="email" class="form-label">Admin Email</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="password" name="AdminPassword1" id="password1" required />
+                            <label for="password1" class="form-label">Password</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="password" name="AdminPassword2" id="password2" required />
+                            <label for="password2" class="form-label">Repeat Password</label>
+                        </div>
+                        <label for="role">Admin Role</label>
+                        <div class="form-group form-input" style="display:inline-block; width:12rem; padding-left:1rem; padding-bottom:1.5rem">
+                            <select class="form-control1" name="Role" id="role" required>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                            </select>
+                        </div>
+                        <p style="padding-bottom:0.8rem">@TempData["ErrorMessageAdmin"]</p>
+                        <div class="form-submit">
+                            <input type="submit" value="Register now" class="submit" id="submit" style="margin:auto" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+    <!-- JS -->
+    <script src="~/Templates/Login&Register/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Templates/Login&Register/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+

@@ -1,0 +1,88 @@
+﻿@using EntityLayer.Concrete
+@model PagedList.IPagedList<Driver>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Drivers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Drivers", "AdmDashboard", FormMethod.Post))
+{
+    <div class="search-wrapper">
+        <span class="las la-search"></span>
+        <input type="search" name="p" placeholder="Search here" />
+    </div>
+}
+
+<div style="margin-top:2rem">
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>Drivers List</h3>
+                <a href="/AdmDashboard/Drivers" class="buttons">See All <span class="las la-arrow-right"></span></a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <td width="15%">Image</td>
+                                <td width="16%">Name</td>
+                                <td width="17%">SurName</td>
+                                <td width="27%">Email</td>
+                                <td width="10%">Status</td>
+                                <td width="15%">Operations</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.DriverImage" alt="Client Profile Photo" class="ppimg">
+                                    </td>
+                                    <td>
+                                        @item.DriverName
+                                    </td>
+                                    <td>
+                                        @item.DriverSurName
+                                    </td>
+                                    <td>
+                                        @item.DriverMail
+                                    </td>
+                                    <td>
+                                        @if (@item.DriverStatus == false)
+                                        {
+                                            <span class="status red"></span>@item.DriverStatus
+                                        }
+                                        else
+                                        {
+                                            <span class="status green"></span>@item.DriverStatus
+                                        }
+                                    </td>
+                                    <td class="customer">
+                                        <div class="contact" style="margin-top:26px">
+                                            <a href="/AdmDriver/AdmEditDriver/@item.DriverID"><span class="fas fa-user-edit" style="padding-right:10px"></span></a>
+                                            <a href="/AdmDriver/DeleteDriver/@item.DriverID"><span class="fas fa-trash" style="color:red;padding-right:10px"></span></a>
+                                            <a href="/AdmDashboard/GetDriverDetails/@item.DriverID"><span class="fas fa-eye" style="color:gray"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Clients", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})
+

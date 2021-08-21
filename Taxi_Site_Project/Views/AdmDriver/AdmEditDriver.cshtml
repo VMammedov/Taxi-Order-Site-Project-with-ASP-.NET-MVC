@@ -1,0 +1,65 @@
+﻿@model EntityLayer.Concrete.Driver
+
+@{
+    ViewBag.Title = "AdmEditDriver";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div style="text-align:center">
+                <h1>Editing #@Html.DisplayFor(x => x.DriverID) @Html.DisplayFor(x => x.DriverName) @Html.DisplayFor(x => x.DriverSurName)</h1>
+            </div>
+            <div>
+                <form action="/AdmDriver/AdmEditDriver" method="post">
+                    @Html.HiddenFor(x => x.DriverID)
+                    @Html.HiddenFor(x => x.DriverStatus)
+                    @Html.HiddenFor(x => x.DriverPasswordHash)
+                    @Html.HiddenFor(x => x.DriverPasswordSalt)
+                    <div class="edit-form-admin ">
+                        <label for="name">Name</label>
+                        @Html.TextBoxFor(x => x.DriverName, new { @id = "name" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="surname">SurName</label>
+                        @Html.TextBoxFor(x => x.DriverSurName, new { @id = "surname" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="email">Email</label>
+                        @Html.TextBoxFor(x => x.DriverMail, new { @id = "email" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="phone">Phone Number</label>
+                        @Html.TextBoxFor(x => x.DriverNumber, new { @id = "phone" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="profession">Profession</label>
+                        @Html.TextBoxFor(x => x.DriverProfession, new { @id = "profession" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="image">Image</label>
+                        @Html.EditorFor(x => x.DriverImage, new { @id = "image" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="about">About</label>
+                        @Html.TextAreaFor(x => x.DriverAbout, new { @class = "richtextbox" , id="about" })
+                    </div>
+                    <div class="edit-form-radio">
+                        <h3>Gender : </h3>
+                        <label><i class="fas fa-male"></i>  Male</label>
+                        @Html.RadioButtonFor(x => x.Sex, value: "Male")
+                        <label><i class="fas fa-female"></i>  Female</label>
+                        @Html.RadioButtonFor(x => x.Sex, value: "Female")
+                    </div>
+                    <div class="edit-form-submit">
+                        <button>Update</button>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

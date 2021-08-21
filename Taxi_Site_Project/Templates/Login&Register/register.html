@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register UROTAXI</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="booking-content">
+                <div style="text-align: center;" class="booking-image">
+                    <img class="booking-img" src="images/logosign.png" alt="Booking Image">
+                </div>
+                <div class="booking-form">
+                    <form id="booking-form">
+                        <h2>Register Our Site</h2>
+                        <div class="form-group form-input">
+                            <input type="text" name="name" id="name" value="" required />
+                            <label for="name" class="form-label">Your name</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="text" name="surname" id="surname" value="" required />
+                            <label for="surname" class="form-label">Your SurName</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="email" name="email" id="email" value="" required />
+                            <label for="email" class="form-label">Your Email</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="number" name="phone" id="phone" value="" required />
+                            <label for="phone" class="form-label">Your phone number</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="password" name="password1" id="password1" value="" required />
+                            <label for="password1" class="form-label">Password</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="password" name="password2" id="password2" value="" required />
+                            <label for="password2" class="form-label">Repeat Password</label>
+                        </div>
+                        <div class="form-radio">
+                            <label class="label-radio">Your Gen</label>
+                            <div class="radio-item-list">
+                                <span>
+                                    <input type="radio" name="gender" value="Male" id="male" />
+                                    <label for="male"><i class="bi bi-gender-male"></i></label>
+                                </span>
+                                <span>
+                                    <input type="radio" name="gender" value="Female" id="female" />
+                                    <label for="female"><i class="bi bi-gender-female"></i></label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <input type="submit" value="Register now" class="submit" id="submit" name="submit" />
+                            <a href="#" class="vertify-booking">Verify your booking info from your phone</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

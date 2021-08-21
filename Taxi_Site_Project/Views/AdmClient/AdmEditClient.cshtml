@@ -1,0 +1,63 @@
+﻿@model EntityLayer.Concrete.Client
+
+@{
+    ViewBag.Title = "AdmEditClient";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div style="text-align:center">
+                <h1>Editing #@Html.DisplayFor(x => x.ClientID) @Html.DisplayFor(x => x.ClientName) @Html.DisplayFor(x => x.ClientSurName)</h1>
+            </div>
+            <div>
+                <form action="/AdmClient/AdmEditClient" method="post">
+                    @Html.HiddenFor(x=>x.ClientID)
+                    @Html.HiddenFor(x=>x.ClientStatus)
+                    @Html.HiddenFor(x=>x.ClientPasswordHash)
+                    @Html.HiddenFor(x=>x.ClientPasswordSalt)
+                    <div class="edit-form-admin ">
+                        <label for="name">Name</label>
+                        @Html.TextBoxFor(x => x.ClientName, new { @id = "name"})
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="surname">SurName</label>
+                        @Html.TextBoxFor(x => x.ClientSurName, new { @id = "surname" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="email">Email</label>
+                        @Html.TextBoxFor(x => x.ClientMail, new { @id = "email" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="phone">Phone Number</label>
+                        @Html.TextBoxFor(x => x.ClientNumber, new { @id = "phone" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="profession">Profession</label>
+                        @Html.TextBoxFor(x => x.ClientProfession, new { @id = "profession" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="image">Image</label>
+                        @Html.EditorFor(x=>x.ClientImage, new { @id = "image" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="about">About</label>
+                        @Html.TextAreaFor(x => x.ClientAbout, new { @class="richtextbox", id="about"})
+                    </div>
+                    <div class="edit-form-radio">
+                        <h3>Gender : </h3>
+                        <label><i class="fas fa-male"></i>  Male</label>
+                        @Html.RadioButtonFor(x => x.Sex, value: "Male")
+                        <label><i class="fas fa-female"></i>  Female</label>
+                        @Html.RadioButtonFor(x => x.Sex, value: "Female")
+                    </div>
+                    <div class="edit-form-submit">
+                        <button>Update</button>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+﻿@using EntityLayer.Concrete
+@model PagedList.IPagedList<Order>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Orders", "AdmOrder", FormMethod.Post))
+{
+    <div class="search-wrapper">
+        <span class="las la-search"></span>
+        <input type="search" name="p" placeholder="Search by Name" />
+    </div>
+}
+
+<div style="margin-top:2rem">
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>Orders List</h3>
+                <a href="/AdmOrder/Orders" class="buttons">See All <span class="las la-arrow-right"></span></a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table style="width: 100%;" id="CustomerGrid">
+                        <thead>
+                            <tr>
+                                <td width="7%">Image</td>
+                                <td width="18%">Client</td>
+                                <td width="17%">PickUp Location</td>
+                                <td width="17%">Drop Location</td>
+                                <td width="14%">Order Date</td>
+                                <td width="13%">Status</td>
+                                <td width="14%">Operations</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.Client.ClientImage" alt="Client Profile Photo" class="ppimg">
+                                    </td>
+                                    <td>
+                                        @item.Client.ClientName @item.Client.ClientSurName
+                                    </td>
+                                    <td>
+                                        @item.PickUpLocation
+                                    </td>
+                                    <td>
+                                        @item.DropLocation
+                                    </td>
+                                    <td>
+                                        @item.OrderDate.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @if (item.OrderStatus == "F")
+                                        {
+                                            <span class="status red"></span>@item.OrderStatus
+                                        }
+                                        else if (item.OrderStatus == "W")
+                                        {
+                                            <span class="status yellow"></span>@item.OrderStatus
+                                        }
+                                        else
+                                        {
+                                        <span class="status green"></span>@item.OrderStatus
+                                        }
+                                    </td>
+                                    <td class="customer">
+                                        <div class="contact" style="margin-top:26px">
+                                            <a href="#"><span class="fas fa-user-edit" style="padding-right:10px"></span></a>
+                                            <a href="#"><span class="fas fa-trash" style="color:red;padding-right:10px"></span></a>
+                                            <a href="#"><span class="fas fa-eye" style="color:gray"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Clients", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})
