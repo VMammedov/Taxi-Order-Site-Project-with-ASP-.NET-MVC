@@ -34,5 +34,7 @@ namespace EntityLayer.Concrete
 
         public virtual Client Client { get; set; }
         public virtual Driver Driver { get; set; }
+
+        // Delete Number
     }
 }

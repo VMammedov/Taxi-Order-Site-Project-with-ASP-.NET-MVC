@@ -89,5 +89,19 @@ namespace Taxi_Site_Project.Controllers
             }
             return RedirectToAction("AdminLogin");
         }
+
+        public ActionResult AdminSignOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("AdminLogin");
+        }
+
+        public ActionResult UserSignOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

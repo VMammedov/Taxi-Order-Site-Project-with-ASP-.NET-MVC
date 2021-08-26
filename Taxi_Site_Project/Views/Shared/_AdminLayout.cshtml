@@ -47,6 +47,9 @@
                 <li>
                     <a href="" class="active1"><span class="fas fa-clipboard-list"></span><span>Tasks</span></a>
                 </li>
+                <li>
+                    <a href="/Login/AdminSignOut" class="active1"><span class="fas fa-sign-out-alt"></span><span>Sign Out</span></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -61,13 +64,7 @@
                     Dashboard
                 </h2>
             </div>
-            <div class="user-wrapper">
-                <img src="img1.jpeg" style="width:40px; height:40px" alt="">
-                <div>
-                    <h4>Vusal Mammadli</h4>
-                    <small>Super Admin</small>
-                </div>
-            </div>
+            @Html.Action("ProfileInfo", "AdmDashboard")
         </header>
         <main>
             @RenderBody()

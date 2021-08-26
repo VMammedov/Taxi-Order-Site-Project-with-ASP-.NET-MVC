@@ -42,7 +42,14 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="@item.ClientImage" alt="Client Profile Photo" class="ppimg">
+                                        @if (string.IsNullOrEmpty(item.ClientImage))
+                                        {
+                                            <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" alt="Client Profile Photo" class="ppimg">
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.ClientImage" alt="Client Profile Photo" class="ppimg">
+                                        }
                                     </td>
                                     <td>
                                         @item.ClientName

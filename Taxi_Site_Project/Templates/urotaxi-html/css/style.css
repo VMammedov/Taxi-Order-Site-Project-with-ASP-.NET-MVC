@@ -8,6 +8,16 @@ body {
   background-color: #ffffff;
 }
 
+.dropdown-menu-right li i {
+    padding-right: 8px;
+}
+
+.user-profile {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
 .layout_padding {
     padding: 90px 0;
 }

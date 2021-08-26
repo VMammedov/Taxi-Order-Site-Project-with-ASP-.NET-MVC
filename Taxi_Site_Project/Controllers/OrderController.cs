@@ -35,30 +35,30 @@ namespace Taxi_Site_Project.Controllers
         [HttpGet]
         public ActionResult Orders()
         {
-            if (Convert.ToString(Session["Class"]) != "Client")
+            if ((string)Session["Class"] != "Client")
             {
                 var value = om.GetListWaitingOrders();
                 return View(value);
             }
             else
             {
-                return RedirectToAction("DriverRestrictionError", "Error");
+                return RedirectToAction("RestrictionError", "Error");
             }
         }
 
         public ActionResult TakeOrder(int id)
         {
-            if (Convert.ToString(Session["Class"]) == "Driver")
+            if ((string)Session["Class"] == "Driver")
             {
                 var value = om.GetByID(id);
-                value.DriverID = dm.GetSessionID(Convert.ToString(Session["DriverMail"]));
+                value.DriverID = dm.GetSessionID((string)Session["DriverMail"]);
                 value.OrderStatus = "C";
                 om.OrderUpdate(value);
                 return RedirectToAction("Orders");
             }
             else
             {
-                return RedirectToAction("DriverRestrictionError", "Error");
+                return RedirectToAction("RestrictionError", "Error");
             }
         }
 

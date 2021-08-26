@@ -10,7 +10,14 @@
     <div class="projects">
         <div class="card">
             <div class="div-img">
-                <img src="@Model.ClientImage" alt="Driver Image" />
+                @if (string.IsNullOrEmpty(Model.ClientImage))
+                {
+                    <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" alt="Driver Image" />
+                }
+                else
+                {
+                    <img src="@Model.ClientImage" alt="Driver Image" />
+                }
             </div>
             <hr />
             <div class="detail">

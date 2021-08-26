@@ -62,7 +62,8 @@
     font-size: 1rem;
     display: block;
 }
-.edit-form-admin input {
+
+.edit-form-admin input, .edit-form-admin-inputs {
     height: 100%;
     width: 60%;
     overflow-x: hidden;

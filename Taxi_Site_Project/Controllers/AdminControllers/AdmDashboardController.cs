@@ -15,6 +15,7 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
 
         DriverManager dm = new DriverManager(new EfDriverDal());
         ClientManager cm = new ClientManager(new EfClientDal());
+        AdminManager am = new AdminManager(new EfAdminDal());
 
         public ActionResult Index()
         {
@@ -46,6 +47,13 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
         {
             var value = dm.GetListBySearch(p).ToPagedList(page, 5);
             return View(value);
+        }
+
+        public PartialViewResult ProfileInfo()
+        {
+            var id = am.GetSessionID((string)Session["AdminMail"]);
+            var value = am.GetByID(id);
+            return PartialView(value);
         }
 
     }

@@ -15,7 +15,7 @@ namespace Taxi_Site_Project.Controllers
         }
 
         [HttpGet]
-        public ActionResult DriverRestrictionError()
+        public ActionResult RestrictionError()
         {
             return View();
         }

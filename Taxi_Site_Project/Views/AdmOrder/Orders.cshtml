@@ -29,13 +29,13 @@
                     <table style="width: 100%;" id="CustomerGrid">
                         <thead>
                             <tr>
-                                <td width="7%">Image</td>
-                                <td width="18%">Client</td>
+                                <td width="13%">Client</td>
+                                <td width="14%">Driver</td>
                                 <td width="17%">PickUp Location</td>
                                 <td width="17%">Drop Location</td>
                                 <td width="14%">Order Date</td>
-                                <td width="13%">Status</td>
-                                <td width="14%">Operations</td>
+                                <td width="12%">Status</td>
+                                <td width="13%">Operations</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,10 +43,17 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="@item.Client.ClientImage" alt="Client Profile Photo" class="ppimg">
+                                        @item.Client.ClientName @item.Client.ClientSurName
                                     </td>
                                     <td>
-                                        @item.Client.ClientName @item.Client.ClientSurName
+                                        @if (item.DriverID==null)
+                                        {
+                                            <p>No Driver</p>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.Driver.DriverName @item.Driver.DriverSurName</span> 
+                                        }
                                     </td>
                                     <td>
                                         @item.PickUpLocation
@@ -60,20 +67,20 @@
                                     <td>
                                         @if (item.OrderStatus == "F")
                                         {
-                                            <span class="status red"></span>@item.OrderStatus
+                                            <span class="status red"></span> <span>Finished</span>
                                         }
                                         else if (item.OrderStatus == "W")
                                         {
-                                            <span class="status yellow"></span>@item.OrderStatus
+                                            <span class="status yellow"></span> <span>Waiting</span>
                                         }
                                         else
                                         {
-                                        <span class="status green"></span>@item.OrderStatus
+                                        <span class="status green"></span> <span>Ongoing</span>
                                         }
                                     </td>
                                     <td class="customer">
                                         <div class="contact" style="margin-top:26px">
-                                            <a href="#"><span class="fas fa-user-edit" style="padding-right:10px"></span></a>
+                                            <a href="/AdmOrder/AdmEditOrder/@item.OrderID"><span class="fas fa-user-edit" style="padding-right:10px"></span></a>
                                             <a href="#"><span class="fas fa-trash" style="color:red;padding-right:10px"></span></a>
                                             <a href="#"><span class="fas fa-eye" style="color:gray"></span></a>
                                         </div>

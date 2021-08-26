@@ -138,7 +138,9 @@
     <Compile Include="Controllers\AdminControllers\AdmDriverController.cs" />
     <Compile Include="Controllers\AdminControllers\AdmDashboardController.cs" />
     <Compile Include="Controllers\AdminControllers\AdmOrderController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,7 +292,6 @@
     <Content Include="Templates\urotaxi-html\images\shield-black.png" />
     <Content Include="Templates\urotaxi-html\images\shield-white.png" />
     <Content Include="Templates\urotaxi-html\images\slider-img.png" />
-    <Content Include="Templates\urotaxi-html\images\taxiorder1.png" />
     <Content Include="Templates\urotaxi-html\images\taxiorder2.png" />
     <Content Include="Templates\urotaxi-html\images\taxiorder3.png" />
     <Content Include="Templates\urotaxi-html\images\title-logo.png" />
@@ -403,15 +405,21 @@
     <Content Include="Views\AdmDriver\AdmEditDriver.cshtml" />
     <Content Include="Views\AdmDashboard\GetDriverDetails.cshtml" />
     <Content Include="Views\AdmDashboard\GetClientDetails.cshtml" />
-    <Content Include="Views\Error\DriverRestrictionError.cshtml" />
     <Content Include="Views\Order\Orders.cshtml" />
     <Content Include="Templates\Table\css\bootstrap\.DS_Store" />
     <Content Include="Templates\Table\css\bootstrap\mixins\.DS_Store" />
     <Content Include="Views\AdmOrder\Orders.cshtml" />
+    <Content Include="Views\AdmOrder\AdmEditOrder.cshtml" />
+    <Content Include="Views\AdmDashboard\ProfileInfo.cshtml" />
+    <Content Include="Views\Error\RestrictionError.cshtml" />
+    <Content Include="Views\Client\EditClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Driver\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

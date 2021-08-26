@@ -17,7 +17,7 @@ namespace Taxi_Site_Project.Controllers
             }
             else
             {
-                return RedirectToAction("DriverRestrictionError", "Error");
+                return RedirectToAction("RestrictionError", "Error");
             }
         }
 
@@ -29,7 +29,7 @@ namespace Taxi_Site_Project.Controllers
             }
             else
             {
-                return RedirectToAction("DriverRestrictionError", "Error");
+                return RedirectToAction("RestrictionError", "Error");
             }
         }
     }

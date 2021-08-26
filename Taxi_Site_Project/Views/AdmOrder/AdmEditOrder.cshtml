@@ -1,0 +1,77 @@
+﻿@model EntityLayer.Concrete.Order 
+
+@{
+    ViewBag.Title = "AdmEditOrder";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div style="text-align:center">
+                <h1>Editing Order #@Html.DisplayFor(x => x.OrderID)</h1>
+            </div>
+            <div>
+                <form action="/AdmOrder/AdmEditOrder" method="post">
+                    @Html.HiddenFor(x => x.OrderID)
+                    @Html.HiddenFor(x => x.DriverID)
+                    @Html.HiddenFor(x => x.ClientID)
+                    @Html.HiddenFor(x => x.OrderDate)
+                    @Html.HiddenFor(x => x.Number)
+                    @Html.HiddenFor(x => x.OrderStatus)
+                    <div class="edit-form-admin ">
+                        <label for="">Car Type</label>
+                        <select name="CarType" class="edit-form-admin-inputs" required>
+                            @switch (Model.CarType)
+                            {
+                                case "Super Economic":
+                                <option value="Super Economic" selected>Super Economic</option>
+                                <option value="Economic">Economic</option>
+                                <option value="Business Class">Business Class</option>
+                                <option value="Comfort">Comfort</option> break;
+                                case "Economic":
+                                <option value="Super Economic">Super Economic</option>
+                                <option value="Economic" selected>Economic</option>
+                                <option value="Business Class">Business Class</option>
+                                <option value="Comfort">Comfort</option> break;
+                                case "Business Class":
+                                <option value="Super Economic">Super Economic</option>
+                                <option value="Economic">Economic</option>
+                                <option value="Business Class" selected>Business Class</option>
+                                <option value="Comfort">Comfort</option> break;
+                                case "Comfort":
+                                <option value="Super Economic">Super Economic</option>
+                                <option value="Economic">Economic</option>
+                                <option value="Business Class">Business Class</option>
+                                <option value="Comfort" selected>Comfort</option> break;
+                                default: 
+                                <option value="Super Economic">Super Economic</option>
+                                <option value="Economic">Economic</option>
+                                <option value="Business Class">Business Class</option>
+                                <option value="Comfort">Comfort</option> 
+                                    break;
+                            }
+                        </select>
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="pickup">PickUp Location</label>
+                        @Html.TextBoxFor(x => x.PickUpLocation, new { @id = "pickup", required = "required" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="drop">Drop Location</label>
+                        @Html.TextBoxFor(x => x.DropLocation, new { @id = "drop", required = "required" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="datetime">PickUp Time</label>
+                        <input type="datetime-local" id="datetime" name="PickUpTime" value="@Model.PickUpTime.ToString("s")"/>
+                    </div>
+                    <div class="edit-form-submit">
+                        <button>Update</button>
+                        <a class="">Activate</a>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
