@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAdminDal.cs" />
+    <Compile Include="Abstract\ICarTypeDal.cs" />
     <Compile Include="Abstract\IClientDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IDriverDal.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\GenericRepository.cs" />
     <Compile Include="EntityFramework\EfAdminDal.cs" />
+    <Compile Include="EntityFramework\EfCarTypeDal.cs" />
     <Compile Include="EntityFramework\EfClientDal.cs" />
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfDriverDal.cs" />
@@ -114,6 +116,10 @@
     <Compile Include="Migrations\202108202042590_mig_deleting_prop_in_orders.designer.cs">
       <DependentUpon>202108202042590_mig_deleting_prop_in_orders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109022047095_mig_adding_car_type_entity.cs" />
+    <Compile Include="Migrations\202109022047095_mig_adding_car_type_entity.designer.cs">
+      <DependentUpon>202109022047095_mig_adding_car_type_entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -163,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108202042590_mig_deleting_prop_in_orders.resx">
       <DependentUpon>202108202042590_mig_deleting_prop_in_orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109022047095_mig_adding_car_type_entity.resx">
+      <DependentUpon>202109022047095_mig_adding_car_type_entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

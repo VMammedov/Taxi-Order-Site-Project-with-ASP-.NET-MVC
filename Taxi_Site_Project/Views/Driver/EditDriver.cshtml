@@ -1,0 +1,70 @@
+﻿@model EntityLayer.Concrete.Driver
+
+@{
+    ViewBag.Title = "EditDriver";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<section class="service_section layout_padding-bottom" style="background-color:#f7f7f7; padding:2rem">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5  offset-md-1">
+                <div class="contact_form">
+                    <h4>
+                        Edit Profile
+                    </h4>
+                    <form action="/Driver/EditDriver" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(x => x.DriverID)
+                        @Html.HiddenFor(x => x.DriverStatus)
+                        @Html.HiddenFor(x => x.DriverPasswordHash)
+                        @Html.HiddenFor(x => x.DriverPasswordSalt)
+                        @Html.HiddenFor(x => x.DriverImage)
+                        <label for="name">Name</label>
+                        @Html.TextBoxFor(x => x.DriverName, new { @class = "form-control", id = "name" })
+                        <br />
+                        <label for="surname">SurName</label>
+                        @Html.TextBoxFor(x => x.DriverSurName, new { @class = "form-control", id = "surname" })
+                        <br />
+                        <label for="mail">Email</label>
+                        @Html.TextBoxFor(x => x.DriverMail, new { @class = "form-control", id = "mail" })
+                        <br />
+                        <label for="number">Number</label>
+                        @Html.TextBoxFor(x => x.DriverNumber, new { @class = "form-control", id = "number" })
+                        <br />
+                        <label for="prof">Profession</label>
+                        @Html.TextBoxFor(x => x.DriverProfession, new { @class = "form-control", id = "prof" })
+                        <br />
+                        <label for="img">Image</label>
+                        <input type="file" style="padding:5px !important; height:2.6rem" name="ClientImage" class="form-control" id="img" />
+                        <br />
+                        <label for="cartype">Your Car Type</label>
+                        @Html.TextBoxFor(x => x.CarType, new { @class = "form-control", id = "cartype" })
+                        <br />
+                        <label for="about">About</label>
+                        @Html.TextAreaFor(x => x.DriverAbout, new { @class = "form-control", style = "height:170px", id = "about" })
+                        <br />
+                        <button class="btn btn-warning" type="submit">Save</button>
+                        <a href="/Driver/ChangePasswordDriver" class="btn btn-secondary" style="color:white"><i class="fas fa-lock"></i> Change Password</a>
+                        <a href="/Driver/DriverDelete" class="btn btn-danger" style="color:white"><i class="fas fa-trash"></i> Delete Account</a>
+                        <br />
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 px-0">
+                <div class="img-box" style="text-align:center">
+                    <img class="img-edit" src="@Model.DriverImage" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function timestampToDatetimeInputString(id1) {
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById(id1).value = now.toISOString().slice(0, 16);
+    }
+</script>
+
+
+

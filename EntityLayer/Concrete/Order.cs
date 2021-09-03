@@ -13,17 +13,11 @@ namespace EntityLayer.Concrete
         public int? DriverID { get; set; }
         public int ClientID { get; set; }
 
-        [StringLength(25)]
-        public string CarType { get; set; }
-
         [StringLength(150)]
         public string PickUpLocation { get; set; }
 
         [StringLength(150)]
         public string DropLocation { get; set; }
-
-        [Phone, StringLength(20)]
-        public string Number { get; set; }
 
         [StringLength(1)]
         public string OrderStatus { get; set; }
@@ -35,6 +29,7 @@ namespace EntityLayer.Concrete
         public virtual Client Client { get; set; }
         public virtual Driver Driver { get; set; }
 
-        // Delete Number
+        public int? CarTypeID { get; set; }
+        public virtual CarType CarTypes { get; set; }
     }
 }

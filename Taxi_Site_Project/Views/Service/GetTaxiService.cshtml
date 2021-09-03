@@ -21,13 +21,10 @@
                     <h4>
                         Order Details
                     </h4>
+                    <br />
                     <form action="/Order/NewOrderNow" method="post">
-                        <select class="form-control" name="CarType" required>
-                            <option value="Super Economic">Super Economic</option>
-                            <option value="Economic">Economic</option>
-                            <option value="Business Class">Business Class</option>
-                            <option value="Comfort">Comfort</option>
-                        </select>
+                        <label for="drpdwn">Car Type</label>
+                        @Html.DropDownListFor(x => x.CarTypeID, (List<SelectListItem>)ViewBag.vlct, new { @class = "form-control", id = "drpdwn"})
                         <input type="text" name="PickUpLocation" placeholder="Pick Up Location" class="form-control" required>
                         <input type="text" name="DropLocation" placeholder="Drop Location" class="form-control" required>
                         <div class="btm_input">

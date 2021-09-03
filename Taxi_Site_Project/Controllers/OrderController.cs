@@ -62,5 +62,17 @@ namespace Taxi_Site_Project.Controllers
             }
         }
 
+        public ActionResult OrdersByClient()
+        {
+            List<Order> value = om.OrdersByClient((string)Session["ClientMail"]);
+            return View(value);
+        }
+
+        public ActionResult OrdersByDriver()
+        {
+            List<Order> value = om.OrdersByDriver((string)Session["DriverMail"]);
+            return View(value);
+        }
+
     }
 }

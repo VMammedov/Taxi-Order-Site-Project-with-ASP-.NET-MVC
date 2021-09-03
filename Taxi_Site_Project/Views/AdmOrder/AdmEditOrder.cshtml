@@ -17,41 +17,10 @@
                     @Html.HiddenFor(x => x.DriverID)
                     @Html.HiddenFor(x => x.ClientID)
                     @Html.HiddenFor(x => x.OrderDate)
-                    @Html.HiddenFor(x => x.Number)
                     @Html.HiddenFor(x => x.OrderStatus)
                     <div class="edit-form-admin ">
-                        <label for="">Car Type</label>
-                        <select name="CarType" class="edit-form-admin-inputs" required>
-                            @switch (Model.CarType)
-                            {
-                                case "Super Economic":
-                                <option value="Super Economic" selected>Super Economic</option>
-                                <option value="Economic">Economic</option>
-                                <option value="Business Class">Business Class</option>
-                                <option value="Comfort">Comfort</option> break;
-                                case "Economic":
-                                <option value="Super Economic">Super Economic</option>
-                                <option value="Economic" selected>Economic</option>
-                                <option value="Business Class">Business Class</option>
-                                <option value="Comfort">Comfort</option> break;
-                                case "Business Class":
-                                <option value="Super Economic">Super Economic</option>
-                                <option value="Economic">Economic</option>
-                                <option value="Business Class" selected>Business Class</option>
-                                <option value="Comfort">Comfort</option> break;
-                                case "Comfort":
-                                <option value="Super Economic">Super Economic</option>
-                                <option value="Economic">Economic</option>
-                                <option value="Business Class">Business Class</option>
-                                <option value="Comfort" selected>Comfort</option> break;
-                                default: 
-                                <option value="Super Economic">Super Economic</option>
-                                <option value="Economic">Economic</option>
-                                <option value="Business Class">Business Class</option>
-                                <option value="Comfort">Comfort</option> 
-                                    break;
-                            }
-                        </select>
+                        <label for="pickup">PickUp Location</label>
+                        @Html.DropDownListFor(x => x.CarTypeID, (List<SelectListItem>)ViewBag.vlct, new { @class = "edit-form-admin-inputs" })
                     </div>
                     <div class="edit-form-admin ">
                         <label for="pickup">PickUp Location</label>
@@ -63,7 +32,7 @@
                     </div>
                     <div class="edit-form-admin ">
                         <label for="datetime">PickUp Time</label>
-                        <input type="datetime-local" id="datetime" name="PickUpTime" value="@Model.PickUpTime.ToString("s")"/>
+                        <input type="datetime-local" id="datetime" name="PickUpTime" value="@Model.PickUpTime.ToString("s")" />
                     </div>
                     <div class="edit-form-submit">
                         <button>Update</button>

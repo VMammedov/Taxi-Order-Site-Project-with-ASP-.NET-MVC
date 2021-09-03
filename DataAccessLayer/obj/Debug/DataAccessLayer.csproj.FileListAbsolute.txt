@@ -8,7 +8,6 @@ C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\bin\Debug
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\bin\Debug\EntityLayer.dll.config
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\bin\Debug\EntityFramework.xml
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.csprojAssemblyReference.cache
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.dll
@@ -26,3 +25,5 @@ C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_adding_admin_model.resources
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_adding_admin_model_real.resources
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_deleting_prop_in_orders.resources
+C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_adding_car_type_entity.resources

@@ -14,9 +14,9 @@ namespace Taxi_Site_Project.Controllers
             {
                 return RedirectToAction("EditClient", "Client");
             }
-            else if ((string)Session["Class"] == "Client")
+            else if ((string)Session["Class"] == "Driver")
             {
-                return RedirectToAction("");
+                return RedirectToAction("EditDriver", "Driver");
             }
             else
             {

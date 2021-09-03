@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IAdminService.cs" />
     <Compile Include="Abstract\IAuthService.cs" />
+    <Compile Include="Abstract\ICarTypeService.cs" />
     <Compile Include="Abstract\IClientService.cs" />
     <Compile Include="Abstract\IContactService.cs" />
     <Compile Include="Abstract\IDriverService.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Abstract\IOrderService.cs" />
     <Compile Include="Concrete\AdminManager.cs" />
     <Compile Include="Concrete\AuthManager.cs" />
+    <Compile Include="Concrete\CarTypeManager.cs" />
     <Compile Include="Concrete\ClientManager.cs" />
     <Compile Include="Concrete\ContactManager.cs" />
     <Compile Include="Concrete\DriverManager.cs" />

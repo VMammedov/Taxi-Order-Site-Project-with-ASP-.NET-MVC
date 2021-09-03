@@ -66,8 +66,18 @@ namespace BusinessLayer.Concrete
         {
             order.OrderStatus = "W";
             order.ClientID = client.ClientID;
-            order.Number = client.ClientNumber;
             order.OrderDate = DateTime.Parse(DateTime.Now.ToString());
+        }
+        public List<Order> OrdersByClient(string ClientMail)
+        {
+            List<Order> OrdersByMail = _orderDal.List(x => x.Client.ClientMail == ClientMail);
+            return OrdersByMail;
+        }
+
+        public List<Order> OrdersByDriver(string DriverMail)
+        {
+            List<Order> OrdersByMail = _orderDal.List(x => x.Driver.DriverMail == DriverMail);
+            return OrdersByMail;
         }
     }
 }

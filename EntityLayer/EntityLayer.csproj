@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\Admin.cs" />
+    <Compile Include="Concrete\CarType.cs" />
     <Compile Include="Concrete\Client.cs" />
     <Compile Include="Concrete\Contact.cs" />
     <Compile Include="Concrete\Driver.cs" />

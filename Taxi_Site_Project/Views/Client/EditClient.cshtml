@@ -15,9 +15,10 @@
                     </h4>
                     <form action="/Client/EditClient" method="post" enctype="multipart/form-data">
                         @Html.HiddenFor(x => x.ClientID)
-                        @Html.HiddenFor(x => x.ClientStatus)
+                        @Html.HiddenFor(x=>x.ClientStatus)
                         @Html.HiddenFor(x => x.ClientPasswordHash)
                         @Html.HiddenFor(x => x.ClientPasswordSalt)
+                        @Html.HiddenFor(x => x.ClientImage)
                         <label for="name">Name</label>
                         @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control", id = "name" })
                         <br />
@@ -39,8 +40,8 @@
                         <label for="about">About</label>
                         @Html.TextAreaFor(x => x.ClientAbout, new { @class = "form-control", style = "height:170px", id = "about" })
                         <br />
-                        <button class="btn btn-warning">Save</button>
-                        <a href="#" class="btn btn-secondary" style="color:white"><i class="fas fa-lock"></i> Change Password</a>
+                        <button class="btn btn-warning" type="submit">Save</button>
+                        <a href="/Client/ChangePasswordClient" class="btn btn-secondary" style="color:white"><i class="fas fa-lock"></i> Change Password</a>
                         <a href="/Client/ClientDelete" class="btn btn-danger" style="color:white"><i class="fas fa-trash"></i> Delete Account</a>
                         <br />
                     </form>
@@ -48,7 +49,7 @@
             </div>
             <div class="col-md-6 px-0">
                 <div class="img-box" style="text-align:center">
-                    <img style="width:300px; height:300px; margin-top:10%; border-radius:50%" src="@Model.ClientImage" alt="">
+                    <img class="img-edit" src="@Model.ClientImage" alt="">
                 </div>
             </div>
         </div>

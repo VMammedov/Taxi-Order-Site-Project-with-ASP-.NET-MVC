@@ -30,6 +30,15 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
         [HttpGet]
         public ActionResult AdmEditOrder(int id)
         {
+            CarTypeManager ctm = new CarTypeManager(new EfCarTypeDal());
+            List<SelectListItem> valuecartype = (from x in ctm.GetList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.carType,
+                                                    Value = x.CarTypeID.ToString()
+                                                }
+                                               ).ToList();
+            ViewBag.vlct = valuecartype;
             var value = om.GetByID(id);
             return View(value);
         }

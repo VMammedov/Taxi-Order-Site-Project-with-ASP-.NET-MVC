@@ -413,12 +413,15 @@
     <Content Include="Views\AdmDashboard\ProfileInfo.cshtml" />
     <Content Include="Views\Error\RestrictionError.cshtml" />
     <Content Include="Views\Client\EditClient.cshtml" />
+    <Content Include="Views\Client\ChangePasswordClient.cshtml" />
+    <Content Include="Views\Driver\EditDriver.cshtml" />
+    <Content Include="Views\Driver\ChangePasswordDriver.cshtml" />
+    <Content Include="Views\Order\OrdersByClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Driver\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

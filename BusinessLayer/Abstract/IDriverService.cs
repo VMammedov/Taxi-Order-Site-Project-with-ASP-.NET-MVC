@@ -16,6 +16,7 @@ namespace BusinessLayer.Abstract
         void DriverAdd(Driver driver);
         void DriverDelete(Driver driver);
         void DriverUpdate(Driver driver);
+        bool ChangePassword(Driver driver, string op, string p1, string p2);
         Driver GetByID(int id);
     }
 }

@@ -72,7 +72,6 @@ C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\Sys
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\Newtonsoft.Json.xml
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\Antlr3.Runtime.pdb
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\obj\Debug\Taxi_Site_Project.csprojAssemblyReference.cache
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\obj\Debug\Taxi_Site_Project.csproj.CoreCompileInputs.cache
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\obj\Debug\Taxi_Site_Project.csproj.CopyComplete
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\obj\Debug\Taxi_Site_Project.dll
@@ -96,3 +95,4 @@ C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\Pag
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\PagedList.Mvc.dll
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\PagedList.xml
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\bin\PagedList.Mvc.xml
+C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\Taxi_Site_Project\obj\Debug\Taxi_Site_Project.csproj.AssemblyReference.cache

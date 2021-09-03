@@ -13,6 +13,8 @@ namespace BusinessLayer.Abstract
         List<Order> GetListOngoingOrders();
         List<Order> GetListWaitingOrders();
         List<Order> GetListBySearch(string p);
+        List<Order> OrdersByClient(string ClientMail);
+        List<Order> OrdersByDriver(string DriverMail);
         void SetOrderDetails(ref Order order, Client client);
         void OrderAdd(Order order);
         void OrderDelete(Order order);

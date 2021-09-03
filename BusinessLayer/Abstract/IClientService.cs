@@ -16,6 +16,7 @@ namespace BusinessLayer.Abstract
         void ClientAdd(Client client);
         void ClientDelete(Client client);
         void ClientUpdate(Client client);
+        bool ChangePassword(Client client, string op, string p1, string p2);
         Client GetByID(int id);
     }
 }
