@@ -1,0 +1,98 @@
+﻿@using EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<News>
+
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("News", "AdmNews", FormMethod.Post))
+{
+    <div class="search-wrapper">
+        <span class="las la-search"></span>
+        <input type="search" name="p" placeholder="Search by Heading" />
+    </div>
+}
+
+<div style="margin-top:2rem">
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>News List</h3>
+                <a href="/AdmNews/News" class="buttons" style="margin-left:47rem">See All <span class="fas fa-arrow-right"></span></a>
+                <a href="/AdmNews/AddNews" class="buttons"><span class="fas fa-newspaper"></span> Publish News <span class="fas fa-arrow-right"></span></a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table style="width: 100%;" id="CustomerGrid">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Image</td>
+                                <td>Heading</td>
+                                <td>Content</td>
+                                <td>Publish Date</td>
+                                <td>Status</td>
+                                <td>Operations</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.NewsID</td>
+                                    <td>
+                                        @if (string.IsNullOrEmpty(item.NewsImage))
+                                        {
+                                            <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" alt="News Photo" class="ppimg">
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.NewsImage" alt="News Photo" class="ppimg">
+                                        }
+                                    </td>
+                                    <td>
+                                        @item.NewsHeading
+                                    </td>
+                                    <td>
+                                        @if (item.NewsValue.Length >= 15) { @item.NewsValue.Substring(0, 15)<span>...</span> }
+                                        else { @item.NewsValue }
+                                    </td>
+                                    <td>
+                                        @item.NewsDate
+                                    </td>
+                                    <td>
+                                        @if (@item.NewsStatus == false)
+                                        {
+                                            <span class="status red"></span><span>Passive</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="status green"></span><span>Active</span>
+                                        }
+                                    </td>
+                                    <td class="customer">
+                                        <div class="contact" style="padding-bottom:20px">
+                                            <a href="/AdmNews/EditNews/@item.NewsID"><span class="fas fa-edit"></span></a>
+                                            <a href="/AdmNews/DeleteNews/@item.NewsID"><span class="fas fa-trash delete"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("News", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})
+

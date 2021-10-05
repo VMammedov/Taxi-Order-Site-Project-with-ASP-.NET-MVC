@@ -1,4 +1,5 @@
 ﻿using EntityLayer.Concrete;
+using EntityLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace BusinessLayer.Abstract
         void ClientAdd(Client client);
         void ClientDelete(Client client);
         void ClientUpdate(Client client);
-        bool ChangePassword(Client client, string op, string p1, string p2);
+        void ChangePassword(Client client, ChangePasswordViewModel passwordViewModel);
+        void AdmChangePassword(Client client, AdmChangePasswordViewModel passwordViewModel);
         Client GetByID(int id);
     }
 }

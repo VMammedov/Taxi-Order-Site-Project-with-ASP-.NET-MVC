@@ -53,7 +53,7 @@ namespace BusinessLayer.Concrete
 
         public void OrderDelete(Order order)
         {
-            order.OrderStatus = "P";
+            order.OrderStatus = "F";
             _orderDal.Update(order);
         }
 
@@ -64,6 +64,10 @@ namespace BusinessLayer.Concrete
 
         public void SetOrderDetails(ref Order order, Client client)
         {
+            if (string.IsNullOrEmpty(order.CarTypeID.ToString()))
+            {
+                order.CarTypeID = 2;
+            }
             order.OrderStatus = "W";
             order.ClientID = client.ClientID;
             order.OrderDate = DateTime.Parse(DateTime.Now.ToString());

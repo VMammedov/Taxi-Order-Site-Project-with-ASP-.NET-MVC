@@ -8230,6 +8230,14 @@ h1, h2, h3, h4, h5,
     color: #cfa00c; }
     .table tbody td.status .waiting:after {
       background: #f2be1d; }
+    .finished {
+        background: #FFCDD2;
+        color: #D32F2F;
+    }
+    .finished:after
+    {
+        background: #F44336;
+    }
   .table tbody td .img {
     width: 50px;
     height: 50px;

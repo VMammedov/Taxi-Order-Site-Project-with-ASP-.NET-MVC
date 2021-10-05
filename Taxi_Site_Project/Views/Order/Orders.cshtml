@@ -41,7 +41,7 @@
                                 <td class="d-flex align-items-center">
                                     <div class="img" style="background-image: url(@item.Client.ClientImage);"></div>
                                     <div class="pl-3 email">
-                                        <span>@item.Client.ClientName @item.Client.ClientSurName</span>
+                                        <a href="/Client/GetClientDetails/@item.Client.ClientID">@item.Client.ClientName @item.Client.ClientSurName</a>
                                         <span>Added: @item.OrderDate</span>
                                     </div>
                                 </td>

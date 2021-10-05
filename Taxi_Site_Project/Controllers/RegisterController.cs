@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Dto;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ using System.Web.Mvc;
 
 namespace Taxi_Site_Project.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
 
@@ -29,16 +32,24 @@ namespace Taxi_Site_Project.Controllers
         [HttpPost]
         public ActionResult ClientRegister(ClientLoginDto clientLoginDto)
         {
-            if (clientLoginDto.Password1 == clientLoginDto.Password2)
+            ClientDtoValidator clientDtoValidator = new ClientDtoValidator();
+            ValidationResult result = clientDtoValidator.Validate(clientLoginDto);
+            if (authService.ChechkMail(clientLoginDto.Email) && result.IsValid)
             {
                 authService.ClientRegister(clientLoginDto.Name, clientLoginDto.SurName, clientLoginDto.Email, clientLoginDto.Password1, clientLoginDto.Phone ,clientLoginDto.Profession, clientLoginDto.Sex);
+                TempData["Successfull"] = "You are Regsitered Successfully";
                 return RedirectToAction("ClientLogin", "Login");
             }
             else
             {
-                TempData["ErrorMessage"] = "Please make sure the passwords are the same!";
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                if (!authService.ChechkMail(clientLoginDto.Email))
+                    ModelState.AddModelError("Email","There is account with that email in the Server!");
+                return View();
             }
-            return RedirectToAction("ClientRegister");
         }
 
         [HttpGet]
@@ -50,16 +61,25 @@ namespace Taxi_Site_Project.Controllers
         [HttpPost]
         public ActionResult DriverRegister(DriverLoginDto driverLoginDto)
         {
-            if (driverLoginDto.Password1==driverLoginDto.Password2)
+            DriverDtoValidator driverDtoValidator = new DriverDtoValidator();
+            ValidationResult result = driverDtoValidator.Validate(driverLoginDto);
+
+            if (authService.ChechkMail(driverLoginDto.Email) && result.IsValid)
             {
                 authService.DriverRegister(driverLoginDto.Name, driverLoginDto.SurName, driverLoginDto.Email, driverLoginDto.Password1, driverLoginDto.Phone, driverLoginDto.Profession, driverLoginDto.Sex);
+                TempData["Successfull"] = "You are Regsitered Successfully";
                 return RedirectToAction("DriverLogin", "Login");
             }
             else
             {
-                TempData["ErrorMessage"] = "Please make sure the passwords are the same!";
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                if (!authService.ChechkMail(driverLoginDto.Email))
+                    ModelState.AddModelError("Email", "There is account with that email in the Server!");
+                return View();
             }
-            return RedirectToAction("DriverRegister");
         }
 
         [HttpGet]

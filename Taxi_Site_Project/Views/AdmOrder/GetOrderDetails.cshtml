@@ -1,0 +1,40 @@
+﻿@model EntityLayer.Concrete.Order
+
+@{
+    ViewBag.Title = "GetOrderDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Order #@Model.OrderID Details</h2>
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div class="detail">
+                <div><i class="fas fa-sticky-note"></i> ID : @Model.OrderID</div>
+                <div><i class="fas fa-user"></i> Client : @Model.Client.ClientName @Model.Client.ClientSurName (@Model.Client.ClientMail)</div>
+                @if (string.IsNullOrEmpty(Model.DriverID.ToString()))
+                {
+                    <div><i class="fas fa-id-card"></i> Driver : No Driver</div>
+                }
+                else
+                { <div><i class="fas fa-id-card"></i> Driver : @Model.Driver.DriverName @Model.Driver.DriverSurName (@Model.Driver.DriverMail)</div> }
+                <div><i class="fas fa-map-marker-alt"></i> Pick Up Location : @Model.PickUpLocation</div>
+                <div><i class="fas fa-map-marker-alt"></i> Drop Location : @Model.DropLocation</div>
+                <div><i class="fas fa-calendar-plus"></i> Pick Up Time : @Model.PickUpTime</div>
+                <div><i class="fas fa-car-side"></i> Car Type : @Model.CarTypes.carType</div>
+                <div><i class="fas fa-calendar-alt"></i> Order Date : @Model.OrderDate</div>
+                <div>
+                    <i class="fas fa-info-circle"></i> Order Staus :
+                    @if (Model.OrderStatus == "F")
+                    {
+                        <span class="status red"></span><span> Finished</span>
+                    }
+                    else if (Model.OrderStatus == "C")
+                    { <span class="status yellow"></span><span> Ongoing</span> }
+                    else
+                    { <span class="status green"></span><span> Waiting</span>}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

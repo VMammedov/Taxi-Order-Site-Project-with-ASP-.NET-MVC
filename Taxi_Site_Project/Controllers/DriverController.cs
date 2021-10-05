@@ -1,12 +1,17 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Utilities;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using EntityLayer.ViewModels;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Taxi_Site_Project.Utilities;
 
 namespace Taxi_Site_Project.Controllers
 {
@@ -27,16 +32,24 @@ namespace Taxi_Site_Project.Controllers
         [HttpPost]
         public ActionResult EditDriver(Driver driver)
         {
-            if (string.IsNullOrEmpty(Request.Files[0].FileName) == false)
+            DriverValidator validationRules = new DriverValidator();
+            ValidationResult result = validationRules.Validate(driver);
+            if (result.IsValid)
             {
-                string filename = Path.GetFileName(Request.Files[0].FileName);
-                string extension = Path.GetExtension(Request.Files[0].FileName);
-                string path = "~/Images/" + filename + extension;
-                Request.Files[0].SaveAs(Server.MapPath(path));
-                driver.DriverImage = "/Images/" + filename + extension;
+                driver.DriverImage = FunctionHelper.UpdateImage(Request, driver.DriverImage);
+                dm.DriverUpdate(driver);
+                TempData["Successfull"] = "Your changes saved successfully!";
+                return RedirectToAction("Index", "Home");
             }
-            dm.DriverUpdate(driver);
-            return RedirectToAction("Index", "Home");
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                Driver drivervalue = dm.GetByID(dm.GetSessionID((string)Session["DriverMail"]));
+                return View(drivervalue);
+            }
         }
 
         public ActionResult ChangePasswordDriver()
@@ -45,25 +58,45 @@ namespace Taxi_Site_Project.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePasswordDriver(string oldpassword, string password1, string password2)
+        public ActionResult ChangePasswordDriver(ChangePasswordViewModel passwordViewModel)
         {
-            string p = (string)Session["DriverMail"];
-            var clientvalue = dm.GetByID(dm.GetSessionID(p));
-            if (!dm.ChangePassword(clientvalue, oldpassword, password1, password2))
+            Driver drivervalue = dm.GetByID(dm.GetSessionID((string)Session["DriverMail"]));
+            ChangePasswordValidator validationRules = new ChangePasswordValidator();
+            ValidationResult result = validationRules.Validate(passwordViewModel);
+            if (!HashingHelper.VerifyPasswordHash(passwordViewModel.oldpassword, drivervalue.DriverPasswordHash, drivervalue.DriverPasswordSalt))
             {
-                TempData["ErrorMessage"] = "Please check that you have filled in all fields correctly and check that the passwords are correct!";
-                return RedirectToAction("ChangePasswordDriver");
+                TempData["ErrorMessage"] = "Old password is incorrect!";
+                return View();
             }
+            if (!result.IsValid)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
+            dm.ChangePassword(drivervalue, passwordViewModel);
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult ClientDelete()
+        public ActionResult DriverDelete()
         {
             string p = (string)Session["DriverMail"];
             int id = dm.GetSessionID(p);
             var clientvalue = dm.GetByID(id);
             dm.DriverDelete(clientvalue);
             return RedirectToAction("SignOut", "Login");
+        }
+
+        public ActionResult GetDriverDetails(int id)
+        {
+            if (id.ToString() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            Driver value = dm.GetByID(id);
+            return View(value);
         }
     }
 }

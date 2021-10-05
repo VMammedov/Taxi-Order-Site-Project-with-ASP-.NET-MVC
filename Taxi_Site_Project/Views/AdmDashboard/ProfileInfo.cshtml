@@ -1,9 +1,19 @@
 ﻿@model EntityLayer.Concrete.Admin
 
-<div class="user-wrapper">
-    <img src="img1.jpe" style="width:40px; height:40px" alt="">
-    <div>
-        <h4>@Model.AdminName</h4>
-        <small>@Model.AdminMail</small>
+@if (!string.IsNullOrEmpty(Model.AdminID.ToString()))
+{
+    <div class="user-wrapper">
+        @if (!string.IsNullOrEmpty((string)Model.AdminImage))
+        {
+            <img src="@Model.AdminImage" style="width:40px; height:40px" alt="">
+        }
+        else
+        {
+            <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" style="width:40px; height:40px" alt="">
+        }
+        <div>
+            <h4>@Model.AdminName</h4>
+            <small>@Model.AdminMail</small>
+        </div>
     </div>
-</div>
+}

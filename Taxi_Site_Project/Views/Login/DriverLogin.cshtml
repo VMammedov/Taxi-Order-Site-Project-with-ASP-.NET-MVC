@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/gif/png" href="~/Templates/urotaxi-html/images/title-logo.png">
     <title>Login UROTAXI</title>
-
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
     <link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
@@ -29,6 +29,7 @@
                 <div style="display: flex; align-items: center;" class="booking-form">
                     <form action="/Login/DriverLogin" method="post" style="width: 100%;" id="booking-form">
                         <h2><span style="padding: 0px 10px" class="fas fa-taxi"></span>Login Your Driver Account</h2>
+                        <h4 style="color:forestgreen">@TempData["Successfull"]</h4>
                         <div class="form-group form-input">
                             <input type="email" name="Email" id="email" value="" required />
                             <label for="email" class="form-label">Your Email</label>

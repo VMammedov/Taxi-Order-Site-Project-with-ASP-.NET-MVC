@@ -14,6 +14,48 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.btn-changepassword {
+    color: #fff;
+    padding: 12px;
+    font-size: 1.2rem;
+    border: 2px solid black;
+    background-color: gray;
+    margin: 0 5rem 0 0;
+    border-radius: 0.4rem;
+    transition: .5s;
+}
+
+.btn-changepassword:hover {
+    background-color:white;
+    border: 2px solid gray;
+    color:gray;
+}
+
+.btn-active {
+    color: #fff;
+    padding: 12px;
+    font-size: 1.2rem;
+    border: 2px solid black;
+    background-color: forestgreen;
+    margin: 0 5rem 8rem 0;
+    border-radius: 0.4rem;
+    transition: .5s;
+}
+
+.btn-active:hover {
+    background-color:white;
+    border: 2px solid forestgreen;
+    color:forestgreen;
+}
+
+.delete {
+    color:red !important;
+}
+
+.get-details {
+    color:grey !important;
+}
+
 .detail {
     width: 50%;
     margin: auto;
@@ -459,6 +501,10 @@ td:last-child {
     padding: .5rem .7rem;
 }
 
+.contact a {
+    padding-right:10px;
+}
+
 .info {
     display: flex;
     align-items: center;
@@ -478,6 +524,10 @@ td:last-child {
 .info small {
     font-weight: 400;
     color: var(--text-grey);
+}
+
+.contact {
+    margin-top: 26px;
 }
 
 .contact span {

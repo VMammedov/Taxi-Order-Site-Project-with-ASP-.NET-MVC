@@ -1,0 +1,26 @@
+﻿@using EntityLayer.Concrete
+@model List<Notification>
+
+<div class="modal fade" id="DriverNotifications" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Notifications</h2>
+            </div>
+            @foreach (Notification item in Model)
+            {
+                <div class="card card-notification">
+                    <h3>@item.NotificationTitle <span class="text-secondary">@item.NotificationTime.ToString("ddd-MMM-yyyy")</span></h3>
+                    <p>@item.NotificationContent</p>
+                </div>
+            }
+            <a class="btn btn-warning btn-notification" href="/Notification/NotificationsByDriver">See All</a>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#myModal").modal();
+    });
+</script>
+

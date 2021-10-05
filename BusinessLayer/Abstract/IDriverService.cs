@@ -1,4 +1,5 @@
 ﻿using EntityLayer.Concrete;
+using EntityLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace BusinessLayer.Abstract
         void DriverAdd(Driver driver);
         void DriverDelete(Driver driver);
         void DriverUpdate(Driver driver);
-        bool ChangePassword(Driver driver, string op, string p1, string p2);
+        void ChangePassword(Driver driver, ChangePasswordViewModel passwordViewModel);
+        void AdmChangePassword(Driver driver, AdmChangePasswordViewModel passwordViewModel);
         Driver GetByID(int id);
     }
 }

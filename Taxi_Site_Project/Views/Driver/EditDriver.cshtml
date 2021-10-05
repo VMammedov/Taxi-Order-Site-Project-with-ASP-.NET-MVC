@@ -21,27 +21,43 @@
                         @Html.HiddenFor(x => x.DriverImage)
                         <label for="name">Name</label>
                         @Html.TextBoxFor(x => x.DriverName, new { @class = "form-control", id = "name" })
+                        @Html.ValidationMessageFor(x => x.DriverName, "", new { @style = "color:red" })
                         <br />
                         <label for="surname">SurName</label>
                         @Html.TextBoxFor(x => x.DriverSurName, new { @class = "form-control", id = "surname" })
+                        @Html.ValidationMessageFor(x => x.DriverSurName, "", new { @style = "color:red" })
                         <br />
                         <label for="mail">Email</label>
                         @Html.TextBoxFor(x => x.DriverMail, new { @class = "form-control", id = "mail" })
+                        @Html.ValidationMessageFor(x => x.DriverMail, "", new { @style = "color:red" })
                         <br />
                         <label for="number">Number</label>
                         @Html.TextBoxFor(x => x.DriverNumber, new { @class = "form-control", id = "number" })
+                        @Html.ValidationMessageFor(x => x.DriverNumber, "", new { @style = "color:red" })
                         <br />
                         <label for="prof">Profession</label>
                         @Html.TextBoxFor(x => x.DriverProfession, new { @class = "form-control", id = "prof" })
+                        @Html.ValidationMessageFor(x => x.DriverProfession, "", new { @style = "color:red" })
                         <br />
                         <label for="img">Image</label>
-                        <input type="file" style="padding:5px !important; height:2.6rem" name="ClientImage" class="form-control" id="img" />
+                        <input type="file" style="padding:5px !important; height:2.6rem" name="DriverImage" class="form-control" id="img" />
+                        @Html.ValidationMessageFor(x => x.DriverImage, "", new { @style = "color:red" })
                         <br />
                         <label for="cartype">Your Car Type</label>
                         @Html.TextBoxFor(x => x.CarType, new { @class = "form-control", id = "cartype" })
+                        @Html.ValidationMessageFor(x => x.CarType, "", new { @style = "color:red" })
                         <br />
                         <label for="about">About</label>
                         @Html.TextAreaFor(x => x.DriverAbout, new { @class = "form-control", style = "height:170px", id = "about" })
+                        @Html.ValidationMessageFor(x => x.DriverAbout, "", new { @style = "color:red" })
+                        <div>
+                            <h5>Gender</h5>
+                            <label><i class="fas fa-male"></i>  Male</label>
+                            @Html.RadioButtonFor(x => x.Sex, value: "Male")
+                            <label><i class="fas fa-female" style="padding-left:1rem"></i>  Female</label>
+                            @Html.RadioButtonFor(x => x.Sex, value: "Female")
+                        </div>
+                        @Html.ValidationMessageFor(x => x.Sex, "", new { @style = "color:red" })
                         <br />
                         <button class="btn btn-warning" type="submit">Save</button>
                         <a href="/Driver/ChangePasswordDriver" class="btn btn-secondary" style="color:white"><i class="fas fa-lock"></i> Change Password</a>
@@ -58,13 +74,3 @@
         </div>
     </div>
 </section>
-<script>
-    function timestampToDatetimeInputString(id1) {
-        var now = new Date();
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-        document.getElementById(id1).value = now.toISOString().slice(0, 16);
-    }
-</script>
-
-
-

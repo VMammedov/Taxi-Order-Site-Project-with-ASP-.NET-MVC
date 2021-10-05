@@ -18,6 +18,9 @@ namespace EntityLayer.Concrete
         [StringLength(1000)]
         public string NewsValue { get; set; }
 
+        [StringLength(300)]
+        public string NewsImage { get; set; }
+
         public DateTime NewsDate { get; set; }
 
         public bool NewsStatus { get; set; }

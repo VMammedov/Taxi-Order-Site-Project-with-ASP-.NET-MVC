@@ -2,6 +2,7 @@
 using BusinessLayer.Utilities;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
+using EntityLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,21 +59,22 @@ namespace BusinessLayer.Concrete
                 return _clientDal.List(x => x.ClientName.Contains(p));
         }
 
-        public bool ChangePassword(Client client, string op, string p1, string p2)
+        public void ChangePassword(Client client, ChangePasswordViewModel passwordViewModel)
         {
             byte[] PasswordHash, PasswordSalt;
-            if (string.IsNullOrEmpty(op) || string.IsNullOrEmpty(p1) || string.IsNullOrEmpty(p2) || !HashingHelper.VerifyPasswordHash(op, client.ClientPasswordHash, client.ClientPasswordSalt) || p1 != p2)
-            {
-                return false;
-            }
-            else
-            {
-                HashingHelper.CreatePasswordHash(p1, out PasswordHash, out PasswordSalt);
-                client.ClientPasswordHash = PasswordHash;
-                client.ClientPasswordSalt = PasswordSalt;
-                ClientUpdate(client);
-                return true;
-            }
+            HashingHelper.CreatePasswordHash(passwordViewModel.password1, out PasswordHash, out PasswordSalt);
+            client.ClientPasswordHash = PasswordHash;
+            client.ClientPasswordSalt = PasswordSalt;
+            ClientUpdate(client);
+        }
+
+        public void AdmChangePassword(Client client, AdmChangePasswordViewModel passwordViewModel)
+        {
+            byte[] PasswordHash, PasswordSalt;
+            HashingHelper.CreatePasswordHash(passwordViewModel.password1, out PasswordHash, out PasswordSalt);
+            client.ClientPasswordHash = PasswordHash;
+            client.ClientPasswordSalt = PasswordSalt;
+            ClientUpdate(client);
         }
 
         public int GetSessionID(string p)

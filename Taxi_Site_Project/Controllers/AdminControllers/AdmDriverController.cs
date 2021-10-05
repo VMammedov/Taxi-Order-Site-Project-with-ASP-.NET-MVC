@@ -1,11 +1,16 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using EntityLayer.ViewModels;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Taxi_Site_Project.Utilities;
 
 namespace Taxi_Site_Project.Controllers.AdminControllers
 {
@@ -13,11 +18,6 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
     {
 
         DriverManager dm = new DriverManager(new EfDriverDal());
-
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult AcceptDriver(int id)
         {
@@ -35,11 +35,50 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
         }
 
         [HttpPost]
-        public ActionResult AdmEditDriver(Driver client)
+        public ActionResult AdmEditDriver(Driver driver)
         {
-            dm.DriverUpdate(client);
-            return RedirectToAction("Clients", "AdmDashboard");
+            DriverValidator validationRules = new DriverValidator();
+            ValidationResult result = validationRules.Validate(driver);
+            if (result.IsValid)
+            {
+                driver.DriverImage = FunctionHelper.UpdateImage(Request, driver.DriverImage);
+                dm.DriverUpdate(driver);
+                return RedirectToAction("Drivers", "AdmDashboard");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return AdmEditDriver(driver.DriverID);
+            }
         }
+
+        public ActionResult AdmChangePasswordDriver(int id)
+        {
+            TempData["id"] = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdmChangePasswordDriver(string id, AdmChangePasswordViewModel passwordViewModel)
+        {
+            Driver drivervalue = dm.GetByID(Convert.ToInt32(id));
+            AdmChangePasswordValidator validationRules = new AdmChangePasswordValidator();
+            ValidationResult result = validationRules.Validate(passwordViewModel);
+            if (!result.IsValid)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return AdmChangePasswordDriver(Convert.ToInt32(id));
+            }
+            dm.AdmChangePassword(drivervalue, passwordViewModel);
+            return RedirectToAction("Drivers", "AdmDashboard");
+        }
+
 
         public ActionResult DeleteDriver(int id)
         {
@@ -48,5 +87,12 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
             return RedirectToAction("Drivers", "AdmDashboard");
         }
 
+        public ActionResult ActivateDriver(int id)
+        {
+            var value = dm.GetByID(id);
+            value.DriverStatus = true;
+            dm.DriverUpdate(value);
+            return RedirectToAction("Drivers", "AdmDashboard");
+        }
     }
 }

@@ -71,10 +71,10 @@
                                         }
                                     </td>
                                     <td class="customer">
-                                        <div class="contact" style="margin-top:26px">
-                                            <a href="/AdmDriver/AdmEditDriver/@item.DriverID"><span class="fas fa-user-edit" style="padding-right:10px"></span></a>
-                                            <a href="/AdmDriver/DeleteDriver/@item.DriverID"><span class="fas fa-trash" style="color:red;padding-right:10px"></span></a>
-                                            <a href="/AdmDashboard/GetDriverDetails/@item.DriverID"><span class="fas fa-eye" style="color:gray"></span></a>
+                                        <div class="contact" style="margin-bottom:26px">
+                                            <a href="/AdmDriver/AdmEditDriver/@item.DriverID"><span class="fas fa-user-edit"></span></a>
+                                            <a href="/AdmDriver/DeleteDriver/@item.DriverID"><span class="fas fa-trash delete"></span></a>
+                                            <a href="/AdmDashboard/AdmGetDriverDetails/@item.DriverID"><span class="fas fa-eye get-details"></span></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -87,7 +87,7 @@
     </div>
 </div>
 <br />
-@Html.PagedListPager((IPagedList)Model, page => Url.Action("Clients", new { page }), new PagedListRenderOptions
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Drivers", new { page }), new PagedListRenderOptions
 {
     LiElementClasses = new List<string>
     {"page-link"}

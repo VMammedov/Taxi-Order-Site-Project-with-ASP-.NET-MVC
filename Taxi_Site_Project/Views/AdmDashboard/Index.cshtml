@@ -30,7 +30,7 @@
 
     <div class="card-single">
         <div>
-            <h1>124</h1>
+            <h1>@TempData["NumberOfOrders"]</h1>
             <span>Orders</span>
         </div>
         <div>
@@ -81,7 +81,7 @@
                                         @item.DriverName
                                         @if (item.DriverSurName.Length > 10)
                                         {
-                                            @item.DriverSurName.Substring(0, 15)<span>...</span>
+                                            @item.DriverSurName.Substring(0, 10)<span>...</span>
                                         }
                                         else
                                         {
@@ -92,7 +92,7 @@
                                     <td>
                                         @if (item.DriverMail.Length > 15)
                                         {
-                                            @item.DriverMail.Substring(0, 14)<span>...</span>
+                                            @item.DriverMail.Substring(0, 15)<span>...</span>
                                         }
                                         else
                                         {
@@ -109,7 +109,7 @@
                                         <a class="btns dng" href="#"><i class="las la-cross"></i> Decline</a>
                                     </td>
                                     <td>
-                                        <a class="btns def" href="/AdmDashboard/GetDriverDetails/@item.DriverID"><i class="las la-eye"></i> View</a>
+                                        <a class="btns def" href="/AdmDashboard/AdmGetDriverDetails/@item.DriverID"><i class="las la-eye"></i> View</a>
                                     </td>
                                 </tr>
                             }

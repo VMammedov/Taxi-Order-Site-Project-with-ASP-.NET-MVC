@@ -1,0 +1,33 @@
+﻿@model EntityLayer.Concrete.Contact
+
+@{
+    ViewBag.Title = "GetContactDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Contact #@Model.ContactID Details</h2>
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div class="detail">
+                <div><i class="fas fa-sticky-note"></i> ID : @Model.ContactID</div>
+                <div><i class="fas fa-user"></i> UserName : @Model.UserName</div>
+                <div><i class="fas fa-mail-bulk"></i> UserMail : @Model.UserMail</div>
+                <div><i class="fas fa-calendar"></i> Contact Date : @Model.ContactDate</div>
+                <div><i class="fas fa-heading"></i> Subject : @Model.Subject</div>
+                <div><i class="fas fa-envelope-open-text"></i> Content : @Model.Message</div>
+                <div>
+                    <i class="fas fa-info-circle"></i> Reading Status :
+                    @if (Model.IsRead)
+                    {
+                        <span class="status green"></span><span> Readed</span>
+                    }
+                    else
+                    { <span class="status red"></span><span> UnReaded</span>}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

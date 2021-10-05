@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.3.3\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -134,9 +137,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AdminControllers\AdmAdminController.cs" />
     <Compile Include="Controllers\AdminControllers\AdmClientController.cs" />
+    <Compile Include="Controllers\AdminControllers\AdmContactController.cs" />
     <Compile Include="Controllers\AdminControllers\AdmDriverController.cs" />
     <Compile Include="Controllers\AdminControllers\AdmDashboardController.cs" />
+    <Compile Include="Controllers\AdminControllers\AdmNewsController.cs" />
     <Compile Include="Controllers\AdminControllers\AdmOrderController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -145,6 +151,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -153,6 +160,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\FunctionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -207,6 +215,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Templates\AdminPanel\images\apicon.png" />
     <Content Include="Templates\AdminPanel\images\bg1.jpg" />
     <Content Include="Templates\AdminPanel\PopupStyle.css" />
     <Content Include="Templates\AdminPanel\index.html" />
@@ -252,6 +261,7 @@
     <Content Include="Templates\urotaxi-html\about.html" />
     <Content Include="Templates\urotaxi-html\contact.html" />
     <Content Include="Templates\urotaxi-html\css\bootstrap.css" />
+    <Content Include="Templates\urotaxi-html\css\ErrorPagesStyle.css" />
     <Content Include="Templates\urotaxi-html\css\responsive.css" />
     <Content Include="Templates\urotaxi-html\css\style.css" />
     <Content Include="Templates\urotaxi-html\images\about-img.png" />
@@ -270,6 +280,7 @@
     <Content Include="Templates\urotaxi-html\images\fb.png" />
     <Content Include="Templates\urotaxi-html\images\hero-bg.jpg" />
     <Content Include="Templates\urotaxi-html\images\hero-bg2.png" />
+    <Content Include="Templates\urotaxi-html\images\unknownblankpp.png" />
     <Content Include="Templates\urotaxi-html\images\instagram.png" />
     <Content Include="Templates\urotaxi-html\images\link.png" />
     <Content Include="Templates\urotaxi-html\images\linkedin.png" />
@@ -311,7 +322,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Templates\urotaxi-html\css\style.css.map" />
     <Content Include="Templates\urotaxi-html\css\style.scss" />
@@ -393,7 +403,6 @@
     <Content Include="Views\Register\DriverRegister.cshtml" />
     <Content Include="Views\Login\DriverLogin.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
-    <Content Include="Views\Service\GetTaxiService.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdmDashboard\Index.cshtml" />
@@ -403,8 +412,8 @@
     <Content Include="Views\AdmClient\AdmEditClient.cshtml" />
     <Content Include="Views\AdmDashboard\Drivers.cshtml" />
     <Content Include="Views\AdmDriver\AdmEditDriver.cshtml" />
-    <Content Include="Views\AdmDashboard\GetDriverDetails.cshtml" />
-    <Content Include="Views\AdmDashboard\GetClientDetails.cshtml" />
+    <Content Include="Views\AdmDashboard\AdmGetDriverDetails.cshtml" />
+    <Content Include="Views\AdmDashboard\AdmGetClientDetails.cshtml" />
     <Content Include="Views\Order\Orders.cshtml" />
     <Content Include="Templates\Table\css\bootstrap\.DS_Store" />
     <Content Include="Templates\Table\css\bootstrap\mixins\.DS_Store" />
@@ -417,6 +426,29 @@
     <Content Include="Views\Driver\EditDriver.cshtml" />
     <Content Include="Views\Driver\ChangePasswordDriver.cshtml" />
     <Content Include="Views\Order\OrdersByClient.cshtml" />
+    <Content Include="Views\Order\OrdersByDriver.cshtml" />
+    <Content Include="Views\Driver\GetDriverDetails.cshtml" />
+    <Content Include="Views\Client\GetClientDetails.cshtml" />
+    <Content Include="Views\Notification\NotificationListByClient.cshtml" />
+    <Content Include="Views\Notification\NotificationListByDriver.cshtml" />
+    <Content Include="Views\Notification\NotificationsByClient.cshtml" />
+    <Content Include="Views\Notification\NotificationsByDriver.cshtml" />
+    <Content Include="Views\AdmNews\News.cshtml" />
+    <Content Include="Views\AdmNews\EditNews.cshtml" />
+    <Content Include="Views\AdmNews\AddNews.cshtml" />
+    <Content Include="Views\AdmContact\Index.cshtml" />
+    <Content Include="Views\AdmContact\GetContactDetails.cshtml" />
+    <Content Include="Views\AdmAdmin\Admins.cshtml" />
+    <Content Include="Views\AdmAdmin\AdmEditAdmin.cshtml" />
+    <Content Include="Views\Error\Page404.cshtml" />
+    <Content Include="Views\Error\Page403.cshtml" />
+    <Content Include="Views\Error\Page401.cshtml" />
+    <Content Include="Views\Error\Page500.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Order\NewOrderNow.cshtml" />
+    <Content Include="Views\AdmOrder\GetOrderDetails.cshtml" />
+    <Content Include="Views\AdmClient\AdmChangePasswordClient.cshtml" />
+    <Content Include="Views\AdmDriver\AdmChangePasswordDriver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

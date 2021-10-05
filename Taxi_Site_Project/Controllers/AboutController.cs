@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Taxi_Site_Project.Controllers
 {
+    [AllowAnonymous]
     public class AboutController : Controller
     {
         public ActionResult Index()

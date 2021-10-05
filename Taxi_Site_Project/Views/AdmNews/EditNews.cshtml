@@ -1,0 +1,45 @@
+﻿@model EntityLayer.Concrete.News
+
+@{
+    ViewBag.Title = "EditNews";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div style="text-align:center">
+                <h1>Editing #@Model.NewsID @Model.NewsHeading</h1>
+            </div>
+            <div>
+                <form action="/AdmNews/EditNews" method="post" enctype="multipart/form-data">
+                    @Html.HiddenFor(x => x.NewsID)
+                    @Html.HiddenFor(x => x.NewsStatus)
+                    @Html.HiddenFor(x => x.NewsDate)
+                    @Html.HiddenFor(x => x.NewsImage)
+                    <div class="edit-form-admin ">
+                        <label for="head">Heading</label>
+                        @Html.TextBoxFor(x => x.NewsHeading, new { @id = "head" })
+                        <p>@Html.ValidationMessageFor(x => x.NewsHeading, "", new { @style = "color:red" })</p>
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="img">Heading</label>
+                        <input type="file" name="NewsImage" id="img" />
+                        <p>@Html.ValidationMessageFor(x => x.NewsImage, "", new { @style = "color:red" })</p>
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="cont">About</label>
+                        @Html.TextAreaFor(x => x.NewsValue, new { @class = "richtextbox", id = "cont" })
+                        <p>@Html.ValidationMessageFor(x => x.NewsValue, "", new { @style = "color:red" })</p>
+                    </div>
+                    <div class="edit-form-submit">
+                        <button>Update</button>
+                        <a class="btn-active" href="/AdmNews/ActivateNews/@Model.NewsID">Activate</a>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

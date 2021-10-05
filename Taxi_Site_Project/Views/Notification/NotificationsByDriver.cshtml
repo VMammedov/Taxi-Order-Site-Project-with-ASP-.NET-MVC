@@ -1,0 +1,38 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<EntityLayer.Concrete.Notification>
+
+<h3 class="display-4 text-center mt-2">Notifications</h3>
+
+<div class="container bg-light rounded my-4">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 p-3">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h5 class="display-5">@item.NotificationTitle</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @item.NotificationContent
+                        </p>
+                    </div>
+                    <div class="card-footer w-100">
+                        <span class="pl-2"><i class="fas fa-shopping-bag text-warning"></i> For @item.Order.DropLocation</span>
+                        <span class="pl-2"><i class="fas fa-calendar text-warning"></i> @item.NotificationTime</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("NotificationsByDriver", new { page }), new PagedListRenderOptions
+    {
+        LiElementClasses = new List<string>
+        {"page-link"}
+    })
+</div>
+

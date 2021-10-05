@@ -12,6 +12,7 @@ using System.Web.Security;
 
 namespace Taxi_Site_Project.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
 

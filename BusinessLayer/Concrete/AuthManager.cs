@@ -15,6 +15,7 @@ namespace BusinessLayer.Concrete
         IClientService _clientService;
         IDriverService _driverService;
         IAdminService _adminService;
+        bool checkclient=true, checkdriver=true;
 
         public AuthManager(IClientService clientService, IDriverService driverService, IAdminService adminService)
         {
@@ -75,7 +76,7 @@ namespace BusinessLayer.Concrete
         {
             byte[] PasswordHash, PasswordSalt;
             HashingHelper.CreatePasswordHash(userPassword, out PasswordHash, out PasswordSalt);
-            var client = new Client
+            Client client = new Client
             {
                 ClientName = userName,
                 ClientSurName = userSurName,
@@ -123,6 +124,26 @@ namespace BusinessLayer.Concrete
                 DriverStatus = false
             };
             _driverService.DriverAdd(driver);
+        }
+
+        public bool ChechkMail(string UserMail)
+        {
+            foreach (Client item in _clientService.GetList())
+            {
+                if(UserMail == item.ClientMail)
+                    checkclient = false;
+            }
+
+            foreach (Driver item in _driverService.GetList())
+            {
+                if (UserMail == item.DriverMail)
+                    checkdriver = false;
+            }
+
+            if (checkclient && checkdriver)
+                return true;
+            else
+                return false;
         }
     }
 }

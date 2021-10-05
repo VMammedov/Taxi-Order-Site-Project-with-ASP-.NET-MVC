@@ -5,17 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+using EntityLayer.Concrete;
 
 namespace Taxi_Site_Project.Controllers
 {
+    [AllowAnonymous]
     public class NewsController : Controller
     {
 
         NewsManager nm = new NewsManager(new EfNewsDal());
 
-        public ActionResult Index()
+        public ActionResult Index(int page=1)
         {
-            var newsvalue = nm.GetList();
+            IPagedList<News> newsvalue = nm.GetList().ToPagedList(page,3);
             return View(newsvalue);
         }
     }

@@ -20,6 +20,9 @@ namespace EntityLayer.Concrete
         [StringLength(60)]
         public string AdminMail { get; set; }
 
+        [StringLength(300)]
+        public string AdminImage { get; set; }
+
         public byte[] AdminPasswordHash { get; set; }
         public byte[] AdminPasswordSalt { get; set; }
 

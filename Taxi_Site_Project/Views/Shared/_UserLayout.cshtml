@@ -15,7 +15,6 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-
     <title>Urotaxi</title>
     <link rel="icon" type="image/gif/png" href="~/Templates/urotaxi-html/images/title-logo.png">
     <link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
@@ -29,22 +28,10 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/popper.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="~/Templates/urotaxi-html/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="~/Templates/urotaxi-html/css/responsive.css" rel="stylesheet" />
-    <style>
-        li {
-            padding: 1px;
-            margin: 0;
-        }
-
-        .soa {
-            padding: 0;
-            margin-right: 1.2rem;
-        }
-    </style>
 </head>
 
 <body class="sub_page">
@@ -81,7 +68,7 @@
                                 else
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Orders</a>
+                                        <a class="nav-link" href="/Order/Orders">Orders</a>
                                     </li>
                                 }
                                 <li class="nav-item">
@@ -107,16 +94,26 @@
                                         </ul>
                                     </li>
                                 }
-                                else if(User.Identity.IsAuthenticated)
+                                else if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="nav-item dropdown">
                                         <i class="dropdown-toggle nav-link fas fa-user" style="font-size:1.3rem" data-toggle="dropdown"></i>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li style="width:11rem"><a class="nav-link" href="/User/EditUser"><i class="fas fa-user-cog"></i>Settings</a></li>
-                                            <li style="width:11rem"><a class="nav-link" href="#"><i class="fas fa-shopping-bag"></i>My Orders</a></li>
-                                            <li style="width:11rem" class="nav-item"><a class="nav-link" href="/Login/UserSignOut"><i class="fas fa-sign-out-alt"></i>Sign Out</a></li>
+                                            @if ((string)Session["Class"] != "Driver")
+                                            {
+                                                <li style="width:13rem"><a class="nav-link" data-toggle="modal" data-target="#ClientNotifications"><i class="fas fa-bell"></i>Notifications</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li style="width:13rem"><a class="nav-link" data-toggle="modal" data-target="#DriverNotifications"><i class="fas fa-bell"></i>Notifications</a></li>
+                                            }
+                                            <li><a class="nav-link" href="/User/UserOrders"><i class="fas fa-shopping-bag"></i>My Orders</a></li>
+                                            <li><a class="nav-link" href="/User/EditUser"><i class="fas fa-user-cog"></i>Settings</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/Login/UserSignOut"><i class="fas fa-sign-out-alt"></i>Sign Out</a></li>
                                         </ul>
                                     </li>
+                                    @Html.Action("NotificationListByClient", "Notification")
+                                    @Html.Action("NotificationListByDriver", "Notification")
                                 }
                             </ul>
                         </div>
@@ -156,16 +153,13 @@
                             <a class="" href="/About/Index/"> About</a>
                         </li>
                         <li class="">
-                            <a class="" href="service.html"> Services </a>
+                            <a class="" href="/Service/Index"> Services </a>
                         </li>
                         <li class="">
-                            <a class="" href="news.html"> News</a>
+                            <a class="" href="/News/Index"> News</a>
                         </li>
                         <li class="">
                             <a class="" href="/Contact/ContactUs/">Contact Us</a>
-                        </li>
-                        <li class="">
-                            <a class="" href="#">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -200,7 +194,6 @@
         <div class="container">
             <p>
                 &copy; 2021 All Rights Reserved By
-                <a href="https://html.design/">Free Html Templates</a>
             </p>
         </div>
     </section>

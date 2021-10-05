@@ -27,3 +27,7 @@ C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_deleting_prop_in_orders.resources
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
 C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_adding_car_type_entity.resources
+C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_adding_notification_entity.resources
+C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_adding_prop_to_notification_entity.resources
+C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_some_changes.resources
+C:\Users\Vusal Mammadli\source\repos\Taxi_Site_Project\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_adding_img_prop_to_admin_news.resources

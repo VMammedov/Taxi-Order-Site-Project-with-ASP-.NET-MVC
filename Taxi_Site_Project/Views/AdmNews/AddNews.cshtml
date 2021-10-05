@@ -1,0 +1,44 @@
+﻿@model EntityLayer.Concrete.News
+
+@{
+    ViewBag.Title = "AddNews";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <br />
+            <div style="text-align:center">
+                <h1>Publish new News</h1>
+            </div>
+            <br />
+            <div>
+                <form action="/AdmNews/AddNews" method="post" enctype="multipart/form-data">
+                    <div class="edit-form-admin ">
+                        <label for="head">Heading</label>
+                        @Html.TextBoxFor(x => x.NewsHeading, new { @id = "head" })
+                        <p>@Html.ValidationMessageFor(x => x.NewsHeading, "", new { @style = "color:red" })</p>
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="img">Heading</label>
+                        <input type="file" name="NewsImage" id="img" />
+                        <p>@Html.ValidationMessageFor(x => x.NewsImage, "", new { @style = "color:red" })</p>
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="cont">About</label>
+                        @Html.TextAreaFor(x => x.NewsValue, new { @class = "richtextbox", id = "cont" })
+                        <p>@Html.ValidationMessageFor(x => x.NewsValue, "", new { @style = "color:red" })</p>
+                    </div>
+                    <div class="edit-form-submit">
+                        <button>Publish</button>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

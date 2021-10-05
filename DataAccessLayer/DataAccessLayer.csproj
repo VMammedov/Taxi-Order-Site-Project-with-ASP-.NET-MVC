@@ -57,6 +57,7 @@
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IDriverDal.cs" />
     <Compile Include="Abstract\INewsDal.cs" />
+    <Compile Include="Abstract\INotificationDal.cs" />
     <Compile Include="Abstract\IOrderDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Concrete\Context.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfDriverDal.cs" />
     <Compile Include="EntityFramework\EfNewsDal.cs" />
+    <Compile Include="EntityFramework\EfNotificationDal.cs" />
     <Compile Include="EntityFramework\EfOrderDal.cs" />
     <Compile Include="Migrations\202107271628521_mig_relationship_.cs" />
     <Compile Include="Migrations\202107271628521_mig_relationship_.designer.cs">
@@ -120,6 +122,22 @@
     <Compile Include="Migrations\202109022047095_mig_adding_car_type_entity.designer.cs">
       <DependentUpon>202109022047095_mig_adding_car_type_entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109060753354_mig_adding_notification_entity.cs" />
+    <Compile Include="Migrations\202109060753354_mig_adding_notification_entity.designer.cs">
+      <DependentUpon>202109060753354_mig_adding_notification_entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109071014582_mig_adding_prop_to_notification_entity.cs" />
+    <Compile Include="Migrations\202109071014582_mig_adding_prop_to_notification_entity.designer.cs">
+      <DependentUpon>202109071014582_mig_adding_prop_to_notification_entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109071628381_mig_some_changes.cs" />
+    <Compile Include="Migrations\202109071628381_mig_some_changes.designer.cs">
+      <DependentUpon>202109071628381_mig_some_changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109221524151_mig_adding_img_prop_to_admin_news.cs" />
+    <Compile Include="Migrations\202109221524151_mig_adding_img_prop_to_admin_news.designer.cs">
+      <DependentUpon>202109221524151_mig_adding_img_prop_to_admin_news.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -172,6 +190,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109022047095_mig_adding_car_type_entity.resx">
       <DependentUpon>202109022047095_mig_adding_car_type_entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109060753354_mig_adding_notification_entity.resx">
+      <DependentUpon>202109060753354_mig_adding_notification_entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109071014582_mig_adding_prop_to_notification_entity.resx">
+      <DependentUpon>202109071014582_mig_adding_prop_to_notification_entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109071628381_mig_some_changes.resx">
+      <DependentUpon>202109071628381_mig_some_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109221524151_mig_adding_img_prop_to_admin_news.resx">
+      <DependentUpon>202109221524151_mig_adding_img_prop_to_admin_news.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

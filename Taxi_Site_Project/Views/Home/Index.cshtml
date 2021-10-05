@@ -38,6 +38,14 @@
     <link href="~/Templates/urotaxi-html/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="~/Templates/urotaxi-html/css/responsive.css" rel="stylesheet" />
+    <style>
+        sup {
+            padding:2px;
+            background-color:red;
+            color:white;
+            border-radius:50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -46,7 +54,7 @@
         <header class="header_section">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/Home/Index">
                         <span>
                             Urotaxi
                         </span>
@@ -64,7 +72,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/About/Index/">About Us</a>
                                 </li>
-                                @if (Convert.ToString(Session["Class"]) != "Driver")
+                                @if ((string)Session["Class"] != "Driver")
                                 {
                                     <li class="nav-item">
                                         <a class="nav-link" href="/Service/Index">Services</a>
@@ -73,7 +81,7 @@
                                 else
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Orders</a>
+                                        <a class="nav-link" href="/Order/Orders">Orders</a>
                                     </li>
                                 }
                                 <li class="nav-item">
@@ -82,33 +90,43 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/Contact/ContactUs">Contact Us</a>
                                 </li>
-                                @if (User.Identity.IsAuthenticated==false)
+                                @if (User.Identity.IsAuthenticated == false)
                                 {
-                                <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href='#'>Login</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li style="width:12.5rem"><a class="nav-link" style="padding:0; margin:0" href="/Login/ClientLogin"><span style="padding:0 4px" class="fas fa-user"></span>Login as Client</a></li>
-                                        <li style="width:12.5rem"><a class="nav-link" style="padding:0; margin:0" href="/Login/DriverLogin"><span style="padding:0 4px" class="fas fa-taxi"></span>Login as Driver</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href='#'>Register</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li style="width:11rem"><a class="nav-link" style="padding:0; margin:0" href="/Register/ClientRegister"><span style="padding:0 4px" class="fas fa-user"></span>Client Sign Up</a></li>
-                                        <li style="width:11rem"><a class="nav-link" style="padding:0; margin:0" href="/Register/DriverRegister"><span style="padding:0 4px" class="fas fa-taxi"></span>Driver Sign Up</a></li>
-                                    </ul>
-                                </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href='#'>Login</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li style="width:12.5rem"><a class="nav-link" style="padding:0; margin:0" href="/Login/ClientLogin"><span style="padding:0 4px" class="fas fa-user"></span>Login as Client</a></li>
+                                            <li style="width:12.5rem"><a class="nav-link" style="padding:0; margin:0" href="/Login/DriverLogin"><span style="padding:0 4px" class="fas fa-taxi"></span>Login as Driver</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href='#'>Register</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li style="width:11rem"><a class="nav-link" style="padding:0; margin:0" href="/Register/ClientRegister"><span style="padding:0 4px" class="fas fa-user"></span>Client Sign Up</a></li>
+                                            <li style="width:11rem"><a class="nav-link" style="padding:0; margin:0" href="/Register/DriverRegister"><span style="padding:0 4px" class="fas fa-taxi"></span>Driver Sign Up</a></li>
+                                        </ul>
+                                    </li>
                                 }
-                                else if(User.Identity.IsAuthenticated)
+                                else if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="nav-item dropdown">
                                         <i class="dropdown-toggle nav-link fas fa-user" style="font-size:1.3rem" data-toggle="dropdown"></i>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li style="width:11rem"><a class="nav-link" href="/User/EditUser"><i class="fas fa-user-cog"></i>Settings</a></li>
-                                            <li style="width:11rem"><a class="nav-link" href="#"><i class="fas fa-shopping-bag"></i>My Orders</a></li>
-                                            <li style="width:11rem" class="nav-item"><a class="nav-link" href="/Login/UserSignOut"><i class="fas fa-sign-out-alt"></i>Sign Out</a></li>
+                                            @if ((string)Session["Class"] != "Driver")
+                                            {
+                                                <li style="width:13rem"><a class="nav-link" data-toggle="modal" data-target="#ClientNotifications"><i class="fas fa-bell"></i>Notifications</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li style="width:13rem"><a class="nav-link" data-toggle="modal" data-target="#DriverNotifications"><i class="fas fa-bell"></i>Notifications</a></li>
+                                            }
+                                            <li><a class="nav-link" href="/User/UserOrders"><i class="fas fa-shopping-bag"></i>My Orders</a></li>
+                                            <li><a class="nav-link" href="/User/EditUser"><i class="fas fa-user-cog"></i>Settings</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/Login/UserSignOut"><i class="fas fa-sign-out-alt"></i>Sign Out</a></li>
                                         </ul>
                                     </li>
+                                    @Html.Action("NotificationListByClient", "Notification")
+                                    @Html.Action("NotificationListByDriver", "Notification")
                                 }
                             </ul>
                         </div>
@@ -170,7 +188,7 @@
                             </div>
 
                             <div class="btn-box">
-                                <a href="" class="btn-1">
+                                <a href="/Service/Index" class="btn-1">
                                     Read More
                                 </a>
                             </div>
@@ -184,6 +202,7 @@
                                     Get A Taxi Now
                                 </h4>
                                 <form action="/Order/NewOrderNow" method="post">
+                                    <input type="hidden" name="CarTypeID" value="2" />
                                     <input type="text" name="PickUpLocation" placeholder="Pick Up Location" required>
                                     <input type="text" name="DropLocation" placeholder="Drop Location" required>
                                     <div class="btm_input">
@@ -210,7 +229,7 @@
                                     Go to Order's List
                                 </h4>
                                     <div style="height:2.6rem; text-align:center" class="btm_input">
-                                        <a href="#" class="btn btn-warning" style="font-size:1.3rem">See Orders</a>
+                                        <a href="/Order/Orders" class="btn btn-warning" style="font-size:1.3rem">See Orders</a>
                                     </div>
                             </div>
                         </div>
@@ -441,16 +460,13 @@
                             <a class="" href="/About/Index/"> About</a>
                         </li>
                         <li class="">
-                            <a class="" href="service.html"> Services </a>
+                            <a class="" href="/Service/Index"> Services </a>
                         </li>
                         <li class="">
-                            <a class="" href="news.html"> News</a>
+                            <a class="" href="/News/Index"> News</a>
                         </li>
                         <li class="">
                             <a class="" href="/Contact/ContactUs/">Contact Us</a>
-                        </li>
-                        <li class="">
-                            <a class="" href="#">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -487,7 +503,6 @@
         <div class="container">
             <p>
                 &copy; 2021 All Rights Reserved By
-                <a href="https://html.design/">Free Html Templates</a>
             </p>
         </div>
     </section>

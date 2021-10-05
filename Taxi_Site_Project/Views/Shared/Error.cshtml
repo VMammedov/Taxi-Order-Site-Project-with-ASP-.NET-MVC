@@ -1,13 +1,27 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/gif/png" href="~/Templates/urotaxi-html/images/title-logo.png">
     <title>Error</title>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/Templates/urotaxi-html/css/ErrorPagesStyle.css" />
 </head>
 <body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
+    <div id="notfound">
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>Oops!</h1>
+                <h2>ERROR</h2>
+            </div>
+            <a href="/Home/Index">Go To Homepage</a>
+        </div>
+    </div>
 </body>
 </html>

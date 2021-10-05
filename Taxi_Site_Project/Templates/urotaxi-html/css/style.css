@@ -8,6 +8,34 @@ body {
   background-color: #ffffff;
 }
 
+.card-notification {
+    padding:1rem;
+}
+
+.card-notification span {
+    font-size: .75rem
+}
+
+.btn-notification {
+    margin: auto;
+    margin-top: .6rem;
+    margin-bottom: .6rem;
+}
+
+.user-details {
+    font-size: 1.4rem;
+}
+
+.user-details div {
+    padding-bottom: 0.8rem;
+}
+
+.detail-img {
+    width: 25rem;
+    height: 25rem;
+    border: 2px solid gold;
+}
+
 .dropdown-menu-right li i {
     padding-right: 8px;
 }

@@ -15,5 +15,6 @@ namespace BusinessLayer.Abstract
         bool ClientLogin(ClientLoginDto clientLoginDto);
         bool DriverLogin(DriverLoginDto driverLoginDto);
         bool AdminLogin(AdminLoginDto adminLoginDto);
+        bool ChechkMail(string UserMail);
     }
 }

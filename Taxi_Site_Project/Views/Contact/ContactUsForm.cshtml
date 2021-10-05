@@ -18,9 +18,13 @@
                     </h4>
                     <form action="/Contact/ContactUsForm" method="post">
                         <input type="text" name="UserName" placeholder="Name">
+                        @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red" })
                         <input type="email" name="UserMail" placeholder="Email">
+                        @Html.ValidationMessageFor(x => x.UserMail, "", new { @style = "color:red" })
                         <input type="text" name="Subject" placeholder="Subject">
+                        @Html.ValidationMessageFor(x => x.Subject, "", new { @style = "color:red" })
                         <input type="text" name="Message" placeholder="Message" class="message_input">
+                        @Html.ValidationMessageFor(x => x.Message, "", new { @style = "color:red" })
                         <button type="submit">Send</button>
                     </form>
                 </div>

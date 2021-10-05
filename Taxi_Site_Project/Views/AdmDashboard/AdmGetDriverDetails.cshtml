@@ -1,0 +1,53 @@
+﻿@model EntityLayer.Concrete.Driver
+
+@{
+    ViewBag.Title = "AdmGetDriverDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Driver Details</h2>
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div class="div-img">
+                @if (string.IsNullOrEmpty(Model.DriverImage))
+                {
+                    <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" alt="Driver Image" />
+                }
+                else
+                {
+                    <img src="@Model.DriverImage" alt="Driver Image" />
+                }
+            </div>
+            <hr />
+            <div class="detail">
+                <div><i class="fas fa-user"></i> Name : @Html.DisplayFor(x => x.DriverName)</div>
+                <div>SurName : @Html.DisplayFor(x => x.DriverSurName)</div>
+                <div><i class="fas fa-mail-bulk"></i> Email : @Html.DisplayFor(x => x.DriverMail)</div>
+                <div><i class="fas fa-phone"></i> Phone Number : @Html.DisplayFor(x => x.DriverNumber)</div>
+                <div><i class="fas fa-hammer"></i> Profession : @Html.DisplayFor(x => x.DriverProfession)</div>
+                <div><i class="fas fa-car"></i> Car Type : @Html.DisplayFor(x => x.CarType)</div>
+                <div>
+                    <i class="fas fa-venus-mars"></i> Gender : @Html.DisplayFor(x => x.Sex)
+                    @if (Model.Sex == "Male")
+                    {
+                        <i class="fas fa-male"></i>
+                    }
+                    else
+                    { <i class="fas fa-female"></i>}
+                </div>
+                <div>
+                    <i class="fas fa-info-circle"></i> Status :
+                    @if (Model.DriverStatus)
+                    {
+                        <span class="status green"></span><span>Active</span>
+                    }
+                    else
+                    { <span class="status red"></span><span>Passive</span>}
+                </div>
+                <div><i class="fas fa-address-card"></i> About : @Html.DisplayFor(x => x.DriverAbout)</div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -31,5 +31,7 @@ namespace EntityLayer.Concrete
 
         public int? CarTypeID { get; set; }
         public virtual CarType CarTypes { get; set; }
+
+        public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

@@ -11,39 +11,58 @@
             <div style="text-align:center">
                 <h1>Editing #@Html.DisplayFor(x => x.DriverID) @Html.DisplayFor(x => x.DriverName) @Html.DisplayFor(x => x.DriverSurName)</h1>
             </div>
+            <div class="div-img">
+                @if (string.IsNullOrEmpty(Model.DriverImage))
+                {
+                    <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" alt="Driver Image" />
+                }
+                else
+                {
+                    <img src="@Model.DriverImage" alt="Driver Image" />
+                }
+            </div>
+            <hr/>
             <div>
-                <form action="/AdmDriver/AdmEditDriver" method="post">
+                <form action="/AdmDriver/AdmEditDriver" method="post" enctype="multipart/form-data">
                     @Html.HiddenFor(x => x.DriverID)
                     @Html.HiddenFor(x => x.DriverStatus)
                     @Html.HiddenFor(x => x.DriverPasswordHash)
                     @Html.HiddenFor(x => x.DriverPasswordSalt)
+                    @Html.HiddenFor(x => x.DriverImage)
                     <div class="edit-form-admin ">
                         <label for="name">Name</label>
                         @Html.TextBoxFor(x => x.DriverName, new { @id = "name" })
+                    <p>@Html.ValidationMessageFor(x => x.DriverName, "", new { @style = "color:red" })</p>
                     </div>
                     <div class="edit-form-admin ">
                         <label for="surname">SurName</label>
                         @Html.TextBoxFor(x => x.DriverSurName, new { @id = "surname" })
+                    <p>@Html.ValidationMessageFor(x => x.DriverSurName, "", new { @style = "color:red" })</p>
                     </div>
                     <div class="edit-form-admin ">
                         <label for="email">Email</label>
                         @Html.TextBoxFor(x => x.DriverMail, new { @id = "email" })
+                    <p>@Html.ValidationMessageFor(x => x.DriverMail, "", new { @style = "color:red" })</p>
                     </div>
                     <div class="edit-form-admin ">
                         <label for="phone">Phone Number</label>
                         @Html.TextBoxFor(x => x.DriverNumber, new { @id = "phone" })
+                    <p>@Html.ValidationMessageFor(x => x.DriverNumber, "", new { @style = "color:red" })</p>
                     </div>
                     <div class="edit-form-admin ">
                         <label for="profession">Profession</label>
                         @Html.TextBoxFor(x => x.DriverProfession, new { @id = "profession" })
+                    <p>@Html.ValidationMessageFor(x => x.DriverProfession, "", new { @style = "color:red" })</p>
                     </div>
                     <div class="edit-form-admin ">
-                        <label for="image">Image</label>
-                        @Html.EditorFor(x => x.DriverImage, new { @id = "image" })
+                        <label for="img">Image</label>
+                        <input type="file" name="DriverImage" id="img" />
+                        <p>@Html.ValidationMessageFor(x => x.DriverImage, "", new { @style = "color:red" })</p>
                     </div>
                     <div class="edit-form-admin ">
                         <label for="about">About</label>
-                        @Html.TextAreaFor(x => x.DriverAbout, new { @class = "richtextbox" , id="about" })
+                        @Html.TextAreaFor(x => x.DriverAbout, new { @class = "richtextbox", id = "about" })
+                    <p>@Html.ValidationMessageFor(x => x.DriverAbout, "", new { @style = "color:red" })</p>
                     </div>
                     <div class="edit-form-radio">
                         <h3>Gender : </h3>
@@ -52,7 +71,10 @@
                         <label><i class="fas fa-female"></i>  Female</label>
                         @Html.RadioButtonFor(x => x.Sex, value: "Female")
                     </div>
+                    <p>@Html.ValidationMessageFor(x => x.Sex, "", new { @style = "color:red" })</p>
                     <div class="edit-form-submit">
+                        <a class="btn-changepassword" href="/AdmDriver/AdmChangePasswordDriver/@Model.DriverID">Change Password</a>
+                        <a class="btn-active" href="/AdmDriver/ActivateDriver/@Model.DriverID">Activate</a>
                         <button>Update</button>
                     </div>
                     <br />

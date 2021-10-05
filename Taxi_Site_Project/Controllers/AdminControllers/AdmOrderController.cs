@@ -16,11 +16,6 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
 
         OrderManager om = new OrderManager(new EfOrderDal());
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Orders(string p, int page = 1)
         {
             var value = om.GetListBySearch(p).ToPagedList(page, 8);
@@ -48,6 +43,19 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
         {
             om.OrderUpdate(order);
             return RedirectToAction("Orders", "AdmOrder");
+        }
+
+        public ActionResult GetOrderDetails(int id)
+        {
+            Order order = om.GetByID(id);
+            return View(order);
+        }
+
+        public ActionResult DeleteOrder(int id)
+        {
+            Order order = om.GetByID(id);
+            om.OrderDelete(order);
+            return RedirectToAction("Orders");
         }
     }
 }

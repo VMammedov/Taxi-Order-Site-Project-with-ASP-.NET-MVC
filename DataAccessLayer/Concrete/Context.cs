@@ -17,5 +17,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<News> News { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<CarType> CarTypes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }

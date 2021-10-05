@@ -21,17 +21,18 @@ namespace Taxi_Site_Project.Controllers.AdminControllers
         {
             TempData["NumberOfDrivers"] = dm.GetList().Count(x => x.DriverStatus == true);
             TempData["NumberOfClients"] = cm.GetList().Count(x => x.ClientStatus == true);
+            TempData["NumberOfOrders"] = cm.GetList().Sum(x=>x.Order.Count);
             var value = dm.GetNonAcceptedList();
             return View(value);
         }
 
-        public PartialViewResult GetDriverDetails(int id)
+        public PartialViewResult AdmGetDriverDetails(int id)
         {
             var value = dm.GetByID(id);
             return PartialView(value);
         }
 
-        public ActionResult GetClientDetails(int id)
+        public ActionResult AdmGetClientDetails(int id)
         {
             var value = cm.GetByID(id);
             return View(value);

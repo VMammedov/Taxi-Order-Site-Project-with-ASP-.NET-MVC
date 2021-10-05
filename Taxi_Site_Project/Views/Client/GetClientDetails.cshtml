@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Concrete.Client
+
+@{
+    ViewBag.Title = "GetClientDetails";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<section class="service_section layout_padding-bottom" style="background-color:#f7f7f7; padding-bottom:2rem">
+    <div class="container">
+        <div class="heading_container" style="margin-top:3rem">
+            <h2>
+                @Model.ClientName @Model.ClientSurName <br />
+                Details
+            </h2>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5  offset-md-1">
+                <div class="contact_form">
+                    <br />
+                    <img src="@Model.ClientImage" alt="Driver's Profile Photo" class="detail-img" />
+                </div>
+            </div>
+            <div class="col-md-6 px-0">
+                <div class="user-details">
+                    <div><i class="fas fa-user text-warning"></i> Name/SurName : @Model.ClientSurName @Model.ClientSurName</div>
+                    <div><i class="fas fa-mail-bulk text-warning"></i> Email : @Model.ClientMail</div>
+                    <div><i class="fas fa-phone text-warning"></i> Phone Number : @Model.ClientNumber</div>
+                    <div><i class="fas fa-hammer text-warning"></i> Profession : @Model.ClientProfession</div>
+                    <div>
+                        <i class="fas fa-venus-mars text-warning"></i> Gender : @Model.Sex
+                        @if (Model.Sex == "Female")
+                        {
+                            <i class="fas fa-male"></i>
+                        }
+                        else
+                        { <i class="fas fa-female"></i>}
+                    </div>
+                    <div>
+                        <i class="fas fa-info-circle text-warning"></i> Status :
+                        @if (Model.ClientStatus)
+                        {
+                            <span class="status green"></span><span>Active</span>
+                        }
+                        else
+                        { <span class="status red"></span><span>Passive</span>}
+                    </div>
+                    <div><i class="fas fa-address-card text-warning"></i> About : @Model.ClientAbout</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

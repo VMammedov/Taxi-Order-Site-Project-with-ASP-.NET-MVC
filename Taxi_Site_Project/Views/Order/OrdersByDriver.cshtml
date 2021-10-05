@@ -1,0 +1,76 @@
+﻿@using EntityLayer.Concrete
+@model List<Order>
+
+@{
+    ViewBag.Title = "OrdersByDriver";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Templates/Table/css/style.css">
+</head>
+
+<div class="container" style="padding: 2rem 0 2rem 0">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section" style="padding:0; margin:0">Your Orders</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrap" style="overflow-x:hidden">
+                <table class="table table-responsive-xl">
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>PickUp Location</th>
+                            <th>Drop Location</th>
+                            <th>PickUp Time</th>
+                            <th width="14%">Status</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="alert" role="alert">
+                                <td class="d-flex align-items-center">
+                                <div class="img" style="background-image: url(@item.Client.ClientImage);"></div>
+                                <div class="pl-3 email">
+                                    <a href="/Client/GetClientDetails/@item.Client.ClientID">@item.Client.ClientName @item.Client.ClientSurName</a>
+                                    <span>Added: @item.OrderDate</span>
+                                </div>
+                                </td>
+                                <td>@item.PickUpLocation</td>
+                                <td>@item.DropLocation</td>
+                                <td>@item.PickUpTime</td>
+                                @if (item.OrderStatus == "W")
+                                {
+                                    <td class="status"><span class="waiting">Waiting</span></td>
+                                }
+                                else if (item.OrderStatus == "C")
+                                {
+                                    <td class="status"><span class="active">Ongoing</span></td>
+                                }
+                                else
+                                {
+                                    <td class="status"><span class="finished">Finished</span></td>
+                                }
+                                <td>
+                                    <a class="btn btn-danger" href="/Order/TakeOrder/@item.OrderID">Cancel</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

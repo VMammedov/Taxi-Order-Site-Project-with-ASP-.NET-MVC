@@ -1,5 +1,7 @@
 ﻿@using EntityLayer.Concrete
-@model List<News>
+@model PagedList.IPagedList<News>
+@using PagedList
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Index";
@@ -41,5 +43,13 @@
         </div>
     </div>
 </section>
+
+<div class="container">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+    {
+        LiElementClasses = new List<string>
+        {"page-link"}
+    })
+</div>
 
 <!-- end news section -->

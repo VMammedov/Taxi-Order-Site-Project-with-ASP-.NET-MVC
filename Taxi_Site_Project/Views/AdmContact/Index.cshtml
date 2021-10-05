@@ -1,0 +1,91 @@
+﻿@using EntityLayer.Concrete
+@model PagedList.IPagedList<Contact>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "AdmContact", FormMethod.Post))
+{
+    <div class="search-wrapper">
+        <span class="las la-search"></span>
+        <input type="search" name="p" placeholder="Search by Subject" />
+    </div>
+}
+
+<div style="margin-top:2rem">
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>Orders List</h3>
+                <a href="/AdmContact/Index" class="buttons">See All <span class="las la-arrow-right"></span></a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table style="width: 100%;" id="CustomerGrid">
+                        <thead>
+                            <tr>
+                                <td width="5%">#</td>
+                                <td width="15%">Name</td>
+                                <td width="18%">Mail</td>
+                                <td width="17%">Subject</td>
+                                <td width="13%">Date</td>
+                                <td width="14%">Reading Status</td>
+                                <td width="18%">Operations</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.ContactID
+                                    </td>
+                                    <td>
+                                        @item.UserName
+                                    </td>
+                                    <td>
+                                        @item.UserMail
+                                    </td>
+                                    <td>
+                                        @item.Subject
+                                    </td>
+                                    <td>
+                                        @item.ContactDate.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @if (item.IsRead == true)
+                                        {
+                                            <span class="status green"></span> <span> Readed</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="status red"></span> <span> UnReaded</span>
+                                        }
+                                    </td>
+                                    <td class="customer">
+                                        <div class="contact" style="padding-bottom:20px">
+                                            <a href="/AdmContact/DeleteContact/@item.ContactID"><span class="fas fa-trash" style="color:red;padding-right:10px"></span></a>
+                                            <a href="/AdmContact/GetContactDetails/@item.ContactID"><span class="fas fa-eye" style="color:gray"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})
+

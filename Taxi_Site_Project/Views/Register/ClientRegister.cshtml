@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/gif/png" href="~/Templates/urotaxi-html/images/title-logo.png">
     <title>Register UROTAXI</title>
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -29,33 +30,41 @@
                 <div class="booking-form">
                     <form id="booking-form" action="/Register/ClientRegister" method="post">
                         <h2><span style="padding: 0px 10px" class="fas fa-user"></span>Register Our Site</h2>
+                        <h5 style="color:orangered">@TempData["ErrorMessage"]</h5>
                         <div class="form-group form-input">
                             <input type="text" name="Name" id="name" required />
                             <label for="name" class="form-label">Your name</label>
+                            @Html.ValidationMessageFor(x => x.Name, "", new { @style = "color:red" })
                         </div>
                         <div class="form-group form-input">
-                            <input type="text" name="SurName" id="surname" required />
+                            <input type="text" name="SurName" id="surname" required/>
                             <label for="surname" class="form-label">Your SurName</label>
+                            @Html.ValidationMessageFor(x => x.SurName, "", new { @style = "color:red" })
                         </div>
                         <div class="form-group form-input">
                             <input type="email" name="Email" id="email" required />
                             <label for="email" class="form-label">Your Email</label>
+                            @Html.ValidationMessageFor(x => x.Email, "", new { @style = "color:red" })
                         </div>
                         <div class="form-group form-input">
                             <input type="number" name="Phone" id="phone" required />
                             <label for="phone" class="form-label">Your phone number</label>
+                            @Html.ValidationMessageFor(x => x.Phone, "", new { @style = "color:red" })
                         </div>
                         <div class="form-group form-input">
                             <input type="text" name="Profession" id="profession" required />
                             <label for="profession" class="form-label">Your Profession</label>
+                            @Html.ValidationMessageFor(x => x.Profession, "", new { @style = "color:red" })
                         </div>
                         <div class="form-group form-input">
                             <input type="password" name="Password1" id="password1" required />
                             <label for="password1" class="form-label">Password</label>
+                            @Html.ValidationMessageFor(x => x.Password1, "", new { @style = "color:red" })
                         </div>
                         <div class="form-group form-input">
                             <input type="password" name="Password2" id="password2" required />
                             <label for="password2" class="form-label">Repeat Password</label>
+                            @Html.ValidationMessageFor(x => x.Password2, "", new { @style = "color:red" })
                         </div>
                         <div class="form-radio">
                             <label class="label-radio">Your Gender</label>
@@ -68,6 +77,7 @@
                                     <input type="radio" name="Sex" value="Female" id="female" />
                                     <label for="female"><i class="bi bi-gender-female"></i></label>
                                 </span>
+                                @Html.ValidationMessageFor(x => x.Sex, "", new { @style = "color:red" })
                             </div>
                         </div>
                         <div class="form-submit">

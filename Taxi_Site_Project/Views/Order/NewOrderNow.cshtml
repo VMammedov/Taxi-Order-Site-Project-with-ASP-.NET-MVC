@@ -1,0 +1,68 @@
+﻿@model EntityLayer.Concrete.Order
+
+@{
+    ViewBag.Title = "NewOrderNow";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<section class="service_section layout_padding-bottom" style="background-color:#f7f7f7; padding-bottom:2rem">
+    <div class="container">
+        <div class="heading_container" style="margin-top:3rem">
+            <h2>
+                UROTAXI <br>
+                Get Taxi
+            </h2>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5  offset-md-1">
+                <div class="contact_form">
+                    <h4>
+                        Order Details
+                    </h4>
+                    <br />
+                    <form action="/Order/NewOrderNow" method="post">
+                        <label for="drpdwn">Car Type</label>
+                        @Html.DropDownListFor(x => x.CarTypeID, (List<SelectListItem>)ViewData["vlct"], new { @class = "form-control", id = "drpdwn" })
+                        @Html.ValidationMessageFor(x => x.CarTypeID, "", new { @style = "color:red" })
+                        <input type="text" name="PickUpLocation" placeholder="Pick Up Location" class="form-control" required>
+                        @Html.ValidationMessageFor(x => x.PickUpLocation, "", new { @style = "color:red" })
+                        <input type="text" name="DropLocation" placeholder="Drop Location" class="form-control" required>
+                        @Html.ValidationMessageFor(x => x.DropLocation, "", new { @style = "color:red" })
+                        <div class="btm_input">
+                            <span>
+                                <label for="dt">Date/Time</label>
+                                <input type="datetime-local" id="dt" class="form-control" name="PickUpTime" style="width:70%; display:inline-block; margin-right:10px" required />
+                                <button type="button" class="btn btn-warning" onclick="timestampToDatetimeInputString('dt')"> Now </button>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.PickUpTime, "", new { @style = "color:red" })
+                        <div style="height:2.6rem" class="btm_input">
+                            <button class="btn btn-warning" style="font-size:1.3rem" id="order">Order Now</button>
+                        </div>
+                        @if (@TempData["Successfull"] != null)
+                        {
+                            <p style="color:lawngreen; font-size:0.9rem; padding:5px 0 0 0"><i class="fas fa-check" style="color:lawngreen; padding:0 6px 0 10px"></i>@TempData["Successfull"]</p>
+                        }
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 px-0">
+                <div class="img-box">
+                    <img style="width:700px; height:518px" src="~/Templates/urotaxi-html/images/taxiorder2.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function timestampToDatetimeInputString(id1) {
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById(id1).value = now.toISOString().slice(0, 16);
+    }
+</script>
+
+
+

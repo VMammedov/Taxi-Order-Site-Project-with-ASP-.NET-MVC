@@ -29,13 +29,13 @@
                     <table style="width: 100%;" id="CustomerGrid">
                         <thead>
                             <tr>
-                                <td width="13%">Client</td>
+                                <td width="14%">Client</td>
                                 <td width="14%">Driver</td>
                                 <td width="17%">PickUp Location</td>
                                 <td width="17%">Drop Location</td>
-                                <td width="14%">Order Date</td>
+                                <td width="12%">Order Date</td>
                                 <td width="12%">Status</td>
-                                <td width="13%">Operations</td>
+                                <td width="14%">Operations</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,10 +79,10 @@
                                         }
                                     </td>
                                     <td class="customer">
-                                        <div class="contact" style="margin-top:26px">
+                                        <div class="contact" style="margin-bottom:26px">
                                             <a href="/AdmOrder/AdmEditOrder/@item.OrderID"><span class="fas fa-user-edit" style="padding-right:10px"></span></a>
-                                            <a href="#"><span class="fas fa-trash" style="color:red;padding-right:10px"></span></a>
-                                            <a href="#"><span class="fas fa-eye" style="color:gray"></span></a>
+                                            <a href="/AdmOrder/DeleteOrder/@item.OrderID"><span class="fas fa-trash" style="color:red;padding-right:10px"></span></a>
+                                            <a href="/AdmOrder/GetOrderDetails/@item.OrderID"><span class="fas fa-eye" style="color:gray"></span></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -95,7 +95,7 @@
     </div>
 </div>
 <br />
-@Html.PagedListPager((IPagedList)Model, page => Url.Action("Clients", new { page }), new PagedListRenderOptions
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Orders", new { page }), new PagedListRenderOptions
 {
     LiElementClasses = new List<string>
     {"page-link"}

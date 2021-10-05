@@ -30,8 +30,7 @@
                             <th>PickUp Location</th>
                             <th>Drop Location</th>
                             <th>PickUp Time</th>
-                            @*<th>Order Date</th>*@
-                            <th>Status</th>
+                            <th width="14%">Status</th>
                             <th>Operations</th>
                         </tr>
                     </thead>
@@ -40,18 +39,40 @@
                         {
                             <tr class="alert" role="alert">
                                 <td class="d-flex align-items-center">
-                                    <div class="img" style="background-image: url(@item.Driver.DriverImage);"></div>
-                                    <div class="pl-3 email">
-                                        <span>@item.Driver.DriverSurName @item.Driver.DriverSurName</span>
-                                        <span>Added: @item.OrderDate</span>
-                                    </div>
+                                    @if (item.DriverID == null)
+                                    {
+                                        <div class="img" style="background-image: url(/Templates/urotaxi-html/images/unknownblankpp.png);"></div>
+                                        <div class="pl-3 email">
+                                            <a>No Driver</a>
+                                            <span>Added: @item.OrderDate</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="img" style="background-image: url(@item.Driver.DriverImage);"></div>
+                                        <div class="pl-3 email">
+                                            <a href="/Driver/GetDriverDetails/@item.DriverID">@item.Driver.DriverSurName @item.Driver.DriverSurName</a>
+                                            <span>Added: @item.OrderDate</span>
+                                        </div>
+                                    }
                                 </td>
                                 <td>@item.PickUpLocation</td>
                                 <td>@item.DropLocation</td>
                                 <td>@item.PickUpTime</td>
-                                <td class="status"><span class="waiting">Waiting</span></td>
+                                @if (item.OrderStatus == "W")
+                                {
+                                    <td class="status"><span class="waiting">Waiting</span></td>
+                                }
+                                else if (item.OrderStatus == "C")
+                                {
+                                    <td class="status"><span class="active">Ongoing</span></td>
+                                }
+                                else
+                                {
+                                    <td class="status"><span class="finished">Finished</span></td>
+                                }
                                 <td>
-                                    <a class="btn btn-success" href="/Order/TakeOrder/@item.OrderID">Take</a>
+                                    <a class="btn btn-danger" href="/Order/TakeOrder/@item.OrderID">Cancel</a>
                                 </td>
                             </tr>
                         }

@@ -2,6 +2,7 @@
 using BusinessLayer.Utilities;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
+using EntityLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,23 +21,22 @@ namespace BusinessLayer.Concrete
             _driverDal = driverDal;
         }
 
-        public bool ChangePassword(Driver driver, string op, string p1, string p2)
+        public void ChangePassword(Driver driver, ChangePasswordViewModel passwordViewModel)
         {
             byte[] PasswordHash, PasswordSalt;
-            if (string.IsNullOrEmpty(op) || string.IsNullOrEmpty(p1) || string.IsNullOrEmpty(p2) 
-                || !HashingHelper.VerifyPasswordHash(op, driver.DriverPasswordHash, driver.DriverPasswordSalt) 
-                || p1 != p2)
-            {
-                return false;
-            }
-            else
-            {
-                HashingHelper.CreatePasswordHash(p1, out PasswordHash, out PasswordSalt);
-                driver.DriverPasswordHash = PasswordHash;
-                driver.DriverPasswordSalt = PasswordSalt;
-                DriverUpdate(driver);
-                return true;
-            }
+            HashingHelper.CreatePasswordHash(passwordViewModel.password1, out PasswordHash, out PasswordSalt);
+            driver.DriverPasswordHash = PasswordHash;
+            driver.DriverPasswordSalt = PasswordSalt;
+            DriverUpdate(driver);
+        }
+
+        public void AdmChangePassword(Driver driver, AdmChangePasswordViewModel passwordViewModel)
+        {
+            byte[] PasswordHash, PasswordSalt;
+            HashingHelper.CreatePasswordHash(passwordViewModel.password1, out PasswordHash, out PasswordSalt);
+            driver.DriverPasswordHash = PasswordHash;
+            driver.DriverPasswordSalt = PasswordSalt;
+            DriverUpdate(driver);
         }
 
         public void DriverAdd(Driver driver)

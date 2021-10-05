@@ -58,11 +58,14 @@
     <Compile Include="Concrete\Driver.cs" />
     <Compile Include="Concrete\LuggageTransfer.cs" />
     <Compile Include="Concrete\News.cs" />
+    <Compile Include="Concrete\Notification.cs" />
     <Compile Include="Concrete\Order.cs" />
     <Compile Include="Dto\AdminLoginDto.cs" />
     <Compile Include="Dto\ClientLoginDto.cs" />
     <Compile Include="Dto\DriverLoginDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AdmChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

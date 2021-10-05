@@ -23,5 +23,21 @@ namespace Taxi_Site_Project.Controllers
                 return RedirectToAction("RestrictionError", "Error");
             }
         }
+
+        public ActionResult UserOrders()
+        {
+            if ((string)Session["Class"] == "Client")
+            {
+                return RedirectToAction("OrdersByClient", "Order");
+            }
+            else if ((string)Session["Class"] == "Driver")
+            {
+                return RedirectToAction("OrdersByDriver", "Order");
+            }
+            else
+            {
+                return RedirectToAction("RestrictionError", "Error");
+            }
+        }
     }
 }

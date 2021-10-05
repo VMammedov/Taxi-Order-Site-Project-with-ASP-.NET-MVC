@@ -1,0 +1,54 @@
+﻿@model EntityLayer.Concrete.Admin
+
+@{
+    ViewBag.Title = "AdmEditAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-top:1rem">
+    <div class="projects">
+        <div class="card">
+            <div style="text-align:center">
+                <h1>Editing Admin #@Model.AdminID</h1>
+            </div>
+            <div class="div-img">
+                @if (string.IsNullOrEmpty(Model.AdminImage))
+                {
+                    <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" alt="Admin Image" />
+                }
+                else
+                {
+                    <img src="@Model.AdminImage" alt="Admin Image" />
+                }
+            </div>
+            <hr />
+            <div>
+                <form action="/AdmAdmin/AdmEditAdmin" method="post" enctype="multipart/form-data">
+                    @Html.HiddenFor(x => x.AdminID)
+                    @Html.HiddenFor(x => x.AdminPasswordHash)
+                    @Html.HiddenFor(x => x.AdminPasswordSalt)
+                    @Html.HiddenFor(x => x.AdminStatus)
+                    @Html.HiddenFor(x => x.AdminRole)
+                    <div class="edit-form-admin ">
+                        <label for="name">Name</label>
+                        @Html.TextBoxFor(x => x.AdminName, new { @id = "name" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="mail">EMail</label>
+                        @Html.TextBoxFor(x => x.AdminMail, new { @id = "mail", type="email" })
+                    </div>
+                    <div class="edit-form-admin ">
+                        <label for="img">Image</label>
+                        <input type="file" name="AdminImage" id="img" />
+                    </div>
+                    <div class="edit-form-submit">
+                        <button>Update</button>
+                        <a class="btn-active" href="/AdmAdmin/ActivateAdmin/@Model.AdminID">Activate</a>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

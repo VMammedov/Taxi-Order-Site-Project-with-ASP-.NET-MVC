@@ -1,0 +1,81 @@
+﻿@model List<EntityLayer.Concrete.Admin>
+
+@{
+    ViewBag.Title = "Admins";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-top:2rem">
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>Admins List</h3>
+                <a href="/AdmAdmin/Admins" class="buttons">See All <span class="las la-arrow-right"></span></a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Image</td>
+                                <td>Name</td>
+                                <td>Mail</td>
+                                <td>Role</td>
+                                <td>Status</td>
+                                <td>Operations</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.AdminID
+                                    </td>
+                                    <td>
+                                        @if (string.IsNullOrEmpty(item.AdminImage))
+                                        {
+                                            <img src="https://liveinsiberia.ru/upload/iblock/d96/14d1689b.png" alt="Admin Profile Photo" class="ppimg">
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.AdminImage" alt="Admin Profile Photo" class="ppimg">
+                                        }
+                                    </td>
+                                    <td>
+                                        @item.AdminName
+                                    </td>
+                                    <td>
+                                        @item.AdminMail
+                                    </td>
+                                    <td>
+                                        @item.AdminRole
+                                    </td>
+                                    <td>
+                                        @if (@item.AdminStatus == false)
+                                        {
+                                            <span class="status red"></span>@item.AdminStatus
+                                        }
+                                        else
+                                        {
+                                            <span class="status green"></span>@item.AdminStatus
+                                        }
+                                    </td>
+                                    <td class="customer">
+                                        <div class="contact" style="padding-bottom:20px">
+                                            <a href="/AdmAdmin/AdmEditAdmin/@item.AdminID"><span class="fas fa-user-edit"></span></a>
+                                            <a href="/AdmAdmin/DeleteAdmin/@item.AdminID"><span class="fas fa-trash delete"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
